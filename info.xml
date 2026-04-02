@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<extension key="org.bcndp.bcndpmembership" type="module">
+  <file>bcndpmembership</file>
+  <name>BCNDP Membership Extension</name>
+  <description>Extends CiviCRM -&gt; Membership by Constituency</description>
+  <license>AGPL-3.0</license>
+  <maintainer>
+    <author>KarinG</author>
+    <email>karin@semper-it.com</email>
+  </maintainer>
+  <releaseDate>2016-07-19</releaseDate>
+  <version>1.2</version>
+  <develStage>beta</develStage>
+  <compatibility>
+    <ver>5.51</ver>
+  </compatibility>
+  <comments/>
+  <civix>
+    <namespace>CRM/Bcndpmembership</namespace>
+    <format>25.10.2</format>
+  </civix>
+  <mixins>
+    <mixin>mgd-php@2.0.0</mixin>
+    <mixin>smarty-v2@1.0.3</mixin>
+    <mixin>scan-classes@1.0.0</mixin>
+  </mixins>
+  <classloader>
+    <psr0 prefix="CRM_" path="."/>
+    <psr4 prefix="Civi\" path="Civi"/>
+  </classloader>
+</extension>
