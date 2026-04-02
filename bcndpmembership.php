@@ -296,10 +296,11 @@ function bcndpmembership_civicrm_postProcess( $formName, &$form ) {
       // Contribution Type ID 501 (Nomination Fees) should not update OR create a new membership AND the Contribution Amount should be >=$1
       if ($form->_submitValues['financial_type_id'] != '501' && $form->_submitValues['total_amount'] >= 1) {
 
+        // Unlike in post contribution hook - this date is already formatted for us
         $date = $form->_submitValues['receive_date'];
-        $date = substr($date, 6, 4) . "-" . substr($date, 0, 2) . "-" . substr($date, 3, 2);
         $c = strtotime(date("Y-m-d", strtotime($date)) . " +1 year");
         $newEndDate = date("Y-m-d", $c);
+        \Drupal::logger('bcndpmembership')->notice('$date= ' . $date . '$newEndDate=' . $newEndDate);
 
         $constituencyName = bcndpmembership_civicrm_post_Address($form->_contactID);
         $contributionId = $form->_id;
