@@ -140,6 +140,14 @@ function bcndpmembership_civicrm_post_create_Contribution($id, $object) {
 }
 
 /**
+ * This hook is fired when...
+ */
+function bcndpmembership_civicrm_post_edit_Contribution($id, $object) {
+  \Drupal::logger('bcndpmembership')->notice("in postCommit_edit_Contribution");
+  \Drupal::logger('bcndpmembership')->notice("<pre>\n\$id=$id\n\$object=" . var_export($object,1) . '</pre>');
+}
+
+/**
  * This hook is fired BEFORE a Contribution is EDITED [which is what we need when we CREATE a Contribution with Credit Card and ACH payment methods]
  */
 function bcndpmembership_civicrm_pre_edit_Contribution($id, $params) {
