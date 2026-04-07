@@ -145,12 +145,40 @@ function bcndpmembership_civicrm_post_create_Contribution($id, $object) {
 function bcndpmembership_civicrm_post_edit_Contribution($id, $object) {
   \Drupal::logger('bcndpmembership')->notice("in postCommit_edit_Contribution");
   \Drupal::logger('bcndpmembership')->notice("<pre>\n\$id=$id\n\$object=" . var_export($object,1) . '</pre>');
+
+  // Contribution Type ID 501 (Nomination Fees) should not update OR create a new membership AND the Contribution Amount should be >=$1
+  // KG - this only works for CASH, CHQ payment methods
+  if ($object->financial_type_id != '501' && $object->total_amount >= 1 && $object->contribution_status_id == 1) {
+
+    $contributionId = $object->id;
+    $params = array(
+      'id' => $contributionId,
+      'version' => 3,
+    );
+    $result = civicrm_api('contribution', 'get', $params);
+    \Drupal::logger('bcndpmembership')->notice("<pre>\n\$id=$id\n\$object=" . var_export($result,1) . '</pre>');
+    if ( $result['is_error'] == 0) {
+      $date = $result['values'][$contributionId]['receive_date'];
+    }
+    $c = strtotime(date("Y-m-d", strtotime($date)) . " +1 year");
+    $newEndDate = date("Y-m-d", $c);
+    \Drupal::logger('bcndpmembership')->notice('$date= ' . $date . '$newEndDate=' . $newEndDate);
+
+    $constituencyName = bcndpmembership_civicrm_post_Address($object->contact_id);
+
+    $contributionType = $object->financial_type_id;
+    $contributionSource = $object->source;
+    if (!empty($constituencyName)) { //&& $constituencyName != -1) {
+      \Drupal::logger('bcndpmembership')->notice('contact_id = ' . $object->contact_id . 'constituencyName = ' . $constituencyName . 'newEndDate = ' . $newEndDate . 'contributionId = ' . $contributionId . 'date = ' . $date . 'contributionType = ' . $contributionType . 'contributionSource = ' . $contributionSource);
+      bcndpmembership_retype_Membership($object->contact_id, $constituencyName, $newEndDate, $contributionId, $date, $contributionType, $contributionSource);
+    }
+  }
 }
 
 /**
  * This hook is fired BEFORE a Contribution is EDITED [which is what we need when we CREATE a Contribution with Credit Card and ACH payment methods]
  */
-function bcndpmembership_civicrm_pre_edit_Contribution($id, $params) {
+/*function bcndpmembership_civicrm_pre_edit_Contribution($id, $params) {
   $previousContribution = $params['prevContribution'];
 
   if ($previousContribution->contribution_status_id && $params['contribution_status_id']) {
@@ -175,7 +203,7 @@ function bcndpmembership_civicrm_pre_edit_Contribution($id, $params) {
     }
 
    }
-}
+}*/
 
 /**
  * Form hook
