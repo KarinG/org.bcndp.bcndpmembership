@@ -325,7 +325,7 @@ function bcndpmembership_civicrm_postProcess( $formName, &$form ) {
     }
   }
 
-  if ( $formName == 'CRM_Contribute_Form_Contribution' ) {
+/*  if ( $formName == 'CRM_Contribute_Form_Contribution' ) {
     if (isset($form->_values['contribution_status_id']) && isset($form->_submitValues['contribution_status_id'])) {
     if ($form->_values['contribution_status_id'] != 1 && $form->_submitValues['contribution_status_id'] == 1) {
 
@@ -345,10 +345,9 @@ function bcndpmembership_civicrm_postProcess( $formName, &$form ) {
           bcndpmembership_retype_Membership($form->_contactID, $constituencyName, $newEndDate, $contributionId, $date, $contributionType, $contributionSource);
         }
       }
-
     }
-  }
-  }
+    }
+  }*/
 }
 
 /**
