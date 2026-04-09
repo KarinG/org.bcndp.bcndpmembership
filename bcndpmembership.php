@@ -699,7 +699,10 @@ function bcndpmembership_retype_Membership($userID, $constituencyName, $newEndDa
     if ($field == 'CurrentJoinDate') { $CurrentJoinDate = $custom_value; }
     }
 
-    // KG Aug 19 - if Federal Membership has expired for more than 90 days it should have no impact
+    \Drupal::logger('bcndpmembership')->notice('Station 1');
+    \Drupal::logger('bcndpmembership')->notice('ExpirationDate = ' . $ExpirationDate . 'CurrentJoinDate = ' . $CurrentJoinDate);
+
+  // KG Aug 19 - if Federal Membership has expired for more than 90 days it should have no impact
     if ($CRMID) {
     $contributionDate = $date;
     if (!empty($contributionId)) {
@@ -748,6 +751,7 @@ function bcndpmembership_retype_Membership($userID, $constituencyName, $newEndDa
   \Drupal::logger('bcndpmembership')->notice('MembershipConstituencyType_id = ' . $MembershipConstituencyType_id . 'userID = ' . $userID . 'source = ' . $source);
 
   if (!empty($contributionId)) {
+    \Drupal::logger('bcndpmembership')->notice('Station 2');
     if ($memStatus == $new_id || $memStatus == $current_id || $memStatus == $grace_id) {
       // KG July 16
       if (!empty($CRMID)) {$newEndDate = max($ExpirationDate, $newEndDate);}
@@ -844,6 +848,7 @@ function bcndpmembership_retype_Membership($userID, $constituencyName, $newEndDa
     }
   else {
     // we came via post_Address or post_create_Membership hook
+    \Drupal::logger('bcndpmembership')->notice('Station 3');
     if (($memStatus == $new_id || ($memStatus == $current_id && empty($CRMID)) || ($memStatus == $grace_id && empty($CRMID)) || ($memStatus == $expired_id && empty($CRMID)) || $memStatus == $lifetime_id)) {
       $source = 'Status was: ' . $memStatus . '; Membership updated via API: retype Membership';
       $params = array(
@@ -856,6 +861,7 @@ function bcndpmembership_retype_Membership($userID, $constituencyName, $newEndDa
       $result = civicrm_api('membership','update', $params);
     }
     elseif ((empty($memStatus)) && !empty($CRMID)) {
+      \Drupal::logger('bcndpmembership')->notice('Station 4');
       // create a new Membership
       $newEndDate = $ExpirationDate; $date = $CurrentJoinDate;
       $source = 'Status was: ' . $memStatus . '; Membership created via API: retype Membership';
@@ -873,6 +879,7 @@ function bcndpmembership_retype_Membership($userID, $constituencyName, $newEndDa
       $result = civicrm_api('membership','create', $params);
     }
     elseif (($memStatus == $expired_id) && !empty($CRMID)) {
+      \Drupal::logger('bcndpmembership')->notice('Station 5');
       // create a new Membership
       $newEndDate = $ExpirationDate; $date = $CurrentJoinDate;
       $source = 'Status was: ' . $memStatus . '; Membership created via API: retype Membership';
@@ -890,6 +897,7 @@ function bcndpmembership_retype_Membership($userID, $constituencyName, $newEndDa
       $result = civicrm_api('membership','create', $params);
     }
     elseif (($memStatus == $grace_id) && !empty($CRMID) || ($memStatus == $current_id) && !empty($CRMID)) {
+      \Drupal::logger('bcndpmembership')->notice('Station 6');
       // updating existing Membership
       $newEndDate = max($ExpirationDate, $newEndDate, $furthest_endDate);
       $source = 'Status was: ' . $memStatus . '; KG Membership updated via API: retype Membership';
