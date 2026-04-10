@@ -431,8 +431,10 @@ function makeFullAddress($street_address) {
  * These two hooks fire when an ADDRESS is EDITED or CREATED. This function will then retrieve constituency and riding information from the contact's address and geocoding.
  */
 function bcndpmembership_civicrm_post_edit_Address($id, $object) {
+  \Drupal::logger('bcndpmembership')->notice('bcndpmembership_civicrm_post_edit_Address' . $object->is_primary);
   if ($object->is_primary == 1) {
     $constituencyName = bcndpmembership_civicrm_post_Address($object->contact_id);
+    \Drupal::logger('bcndpmembership')->notice($constituencyName);
     if (!empty($constituencyName)) { //} && $constituencyName != -1) {
       bcndpmembership_retype_Membership($object->contact_id, $constituencyName, $newEndDate="", $contributionID="", $date="", $contributionType="", $contributionSource="");
     }
@@ -440,8 +442,10 @@ function bcndpmembership_civicrm_post_edit_Address($id, $object) {
 }
 
 function bcndpmembership_civicrm_post_create_Address($id, $object) {
+  \Drupal::logger('bcndpmembership')->notice('bcndpmembership_civicrm_post_create_Address' . $object->is_primary);
   if ($object->is_primary == 1) {
     $constituencyName = bcndpmembership_civicrm_post_Address($object->contact_id);
+    \Drupal::logger('bcndpmembership')->notice($constituencyName);
     if (!empty($constituencyName)) { //} && $constituencyName != -1) {
       bcndpmembership_retype_Membership($object->contact_id, $constituencyName, $newEndDate="", $contributionID="", $date="", $contributionType="", $contributionSource="");
     }
@@ -553,12 +557,6 @@ function bcndpmembership_civicrm_post_Address($userID) {
         }
       }
     }
-
-    // If we have results for both - write them to the database. If we have an empty $constituencyName - Address must be out of province.
-    // if (empty($constituencyName)) {
-    //   $constituencyName = 'Out of Province';
-    //   $ridingName = 'Out of Province';
-    // }
 
     $params = array(
       'title' => 'Constituency Details',
