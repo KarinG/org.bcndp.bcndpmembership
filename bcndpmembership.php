@@ -38,9 +38,9 @@ function bcndpmembership_civicrm_enable() {
  * @param array $object - reference to an array containing the data
  */
 function bcndpmembership_civicrm_postCommit($action, $entity, $id, &$object) {
-  \Drupal::logger('bcndpmembership')->notice('bcndpmembership_civicrm_post_'.$action.'_'.$entity);
+  //\Drupal::logger('bcndpmembership')->notice('bcndpmembership_civicrm_post_'.$action.'_'.$entity);
   if (function_exists("bcndpmembership_civicrm_post_{$action}_{$entity}")) {
-    \Drupal::logger('bcndpmembership')->notice("bcndpmembership_civicrm_post_{$action}_{$entity}(\$id, &\$object)<pre>\n\$id=$id\n\$object=" . var_export($object,1) . '</pre>');
+    //\Drupal::logger('bcndpmembership')->notice("bcndpmembership_civicrm_post_{$action}_{$entity}(\$id, &\$object)<pre>\n\$id=$id\n\$object=" . var_export($object,1) . '</pre>');
     $tz = date_default_timezone_get();
     date_default_timezone_set('UTC');
     call_user_func("bcndpmembership_civicrm_post_{$action}_{$entity}", $id, $object);
@@ -49,9 +49,9 @@ function bcndpmembership_civicrm_postCommit($action, $entity, $id, &$object) {
 }
 
 function bcndpmembership_civicrm_pre($action, $entity, $id, &$params) {
-  \Drupal::logger('bcndpmembership')->notice('bcndpmembership_civicrm_pre_'.$action.'_'.$entity);
+  //\Drupal::logger('bcndpmembership')->notice('bcndpmembership_civicrm_pre_'.$action.'_'.$entity);
   if (function_exists("bcndpmembership_civicrm_pre_{$action}_{$entity}")) {
-    \Drupal::logger('bcndpmembership')->notice("bcndpmembership_civicrm_pre_{$action}_{$entity}(\$id, &\$object)<pre>\n\$id=$id\n\$params=" . var_export($params,1) . '</pre>');
+    //\Drupal::logger('bcndpmembership')->notice("bcndpmembership_civicrm_pre_{$action}_{$entity}(\$id, &\$object)<pre>\n\$id=$id\n\$params=" . var_export($params,1) . '</pre>');
     $tz = date_default_timezone_get();
     date_default_timezone_set('UTC');
     call_user_func("bcndpmembership_civicrm_pre_{$action}_{$entity}", $id, $params);
@@ -120,20 +120,20 @@ function bcndpmembership_civicrm_post_create_Contribution($id, $object) {
       'version' => 3,
     );
     $result = civicrm_api('contribution', 'get', $params);
-    \Drupal::logger('bcndpmembership')->notice("<pre>\n\$id=$id\n\$object=" . var_export($result,1) . '</pre>');
+    //\Drupal::logger('bcndpmembership')->notice("<pre>\n\$id=$id\n\$object=" . var_export($result,1) . '</pre>');
     if ( $result['is_error'] == 0) {
       $date = $result['values'][$contributionId]['receive_date'];
     }
     $c = strtotime(date("Y-m-d", strtotime($date)) . " +1 year");
     $newEndDate = date("Y-m-d", $c);
-    \Drupal::logger('bcndpmembership')->notice('$date= ' . $date . '$newEndDate=' . $newEndDate);
+    //\Drupal::logger('bcndpmembership')->notice('$date= ' . $date . '$newEndDate=' . $newEndDate);
 
     $constituencyName = bcndpmembership_civicrm_post_Address($object->contact_id);
 
     $contributionType = $object->financial_type_id;
     $contributionSource = $object->source;
     if (!empty($constituencyName)) { //&& $constituencyName != -1) {
-      \Drupal::logger('bcndpmembership')->notice('contact_id = ' . $object->contact_id . 'constituencyName = ' . $constituencyName . 'newEndDate = ' . $newEndDate . 'contributionId = ' . $contributionId . 'date = ' . $date . 'contributionType = ' . $contributionType . 'contributionSource = ' . $contributionSource);
+      //\Drupal::logger('bcndpmembership')->notice('contact_id = ' . $object->contact_id . 'constituencyName = ' . $constituencyName . 'newEndDate = ' . $newEndDate . 'contributionId = ' . $contributionId . 'date = ' . $date . 'contributionType = ' . $contributionType . 'contributionSource = ' . $contributionSource);
       bcndpmembership_retype_Membership($object->contact_id, $constituencyName, $newEndDate, $contributionId, $date, $contributionType, $contributionSource);
     }
   }
@@ -143,8 +143,8 @@ function bcndpmembership_civicrm_post_create_Contribution($id, $object) {
  * This hook is fired when...
  */
 function bcndpmembership_civicrm_post_edit_Contribution($id, $object) {
-  \Drupal::logger('bcndpmembership')->notice("in postCommit_edit_Contribution");
-  \Drupal::logger('bcndpmembership')->notice("<pre>\n\$id=$id\n\$object=" . var_export($object,1) . '</pre>');
+  //\Drupal::logger('bcndpmembership')->notice("in postCommit_edit_Contribution");
+  //\Drupal::logger('bcndpmembership')->notice("<pre>\n\$id=$id\n\$object=" . var_export($object,1) . '</pre>');
 
   // Contribution Type ID 501 (Nomination Fees) should not update OR create a new membership AND the Contribution Amount should be >=$1
   // KG - this only works for CASH, CHQ payment methods
@@ -156,20 +156,20 @@ function bcndpmembership_civicrm_post_edit_Contribution($id, $object) {
       'version' => 3,
     );
     $result = civicrm_api('contribution', 'get', $params);
-    \Drupal::logger('bcndpmembership')->notice("<pre>\n\$id=$id\n\$object=" . var_export($result,1) . '</pre>');
+    //\Drupal::logger('bcndpmembership')->notice("<pre>\n\$id=$id\n\$object=" . var_export($result,1) . '</pre>');
     if ( $result['is_error'] == 0) {
       $date = $result['values'][$contributionId]['receive_date'];
     }
     $c = strtotime(date("Y-m-d", strtotime($date)) . " +1 year");
     $newEndDate = date("Y-m-d", $c);
-    \Drupal::logger('bcndpmembership')->notice('$date= ' . $date . '$newEndDate=' . $newEndDate);
+    //\Drupal::logger('bcndpmembership')->notice('$date= ' . $date . '$newEndDate=' . $newEndDate);
 
     $constituencyName = bcndpmembership_civicrm_post_Address($object->contact_id);
 
     $contributionType = $object->financial_type_id;
     $contributionSource = $object->source;
     if (!empty($constituencyName)) { //&& $constituencyName != -1) {
-      \Drupal::logger('bcndpmembership')->notice('contact_id = ' . $object->contact_id . 'constituencyName = ' . $constituencyName . 'newEndDate = ' . $newEndDate . 'contributionId = ' . $contributionId . 'date = ' . $date . 'contributionType = ' . $contributionType . 'contributionSource = ' . $contributionSource);
+      //\Drupal::logger('bcndpmembership')->notice('contact_id = ' . $object->contact_id . 'constituencyName = ' . $constituencyName . 'newEndDate = ' . $newEndDate . 'contributionId = ' . $contributionId . 'date = ' . $date . 'contributionType = ' . $contributionType . 'contributionSource = ' . $contributionSource);
       bcndpmembership_retype_Membership($object->contact_id, $constituencyName, $newEndDate, $contributionId, $date, $contributionType, $contributionSource);
     }
   }
@@ -191,7 +191,7 @@ function bcndpmembership_civicrm_post_edit_Contribution($id, $object) {
         $date = $previousContribution->receive_date;
         $c = strtotime(date("Y-m-d", strtotime($date)) . " +1 year");
         $newEndDate = date("Y-m-d", $c);
-        \Drupal::logger('bcndpmembership')->notice('$date= ' . $date . '$newEndDate=' . $newEndDate);
+        //\Drupal::logger('bcndpmembership')->notice('$date= ' . $date . '$newEndDate=' . $newEndDate);
 
         $constituencyName = bcndpmembership_civicrm_post_Address($previousContribution->contact_id);
         $contributionId = $params['id'];
@@ -336,7 +336,7 @@ function bcndpmembership_civicrm_postProcess( $formName, &$form ) {
         $date = $form->_submitValues['receive_date'];
         $c = strtotime(date("Y-m-d", strtotime($date)) . " +1 year");
         $newEndDate = date("Y-m-d", $c);
-        \Drupal::logger('bcndpmembership')->notice('$date= ' . $date . '$newEndDate=' . $newEndDate);
+        //\Drupal::logger('bcndpmembership')->notice('$date= ' . $date . '$newEndDate=' . $newEndDate);
 
         $constituencyName = bcndpmembership_civicrm_post_Address($form->_contactID);
         $contributionId = $form->_id;
@@ -431,10 +431,10 @@ function makeFullAddress($street_address) {
  * These two hooks fire when an ADDRESS is EDITED or CREATED. This function will then retrieve constituency and riding information from the contact's address and geocoding.
  */
 function bcndpmembership_civicrm_post_edit_Address($id, $object) {
-  \Drupal::logger('bcndpmembership')->notice('bcndpmembership_civicrm_post_edit_Address' . $object->is_primary);
+  //\Drupal::logger('bcndpmembership')->notice('bcndpmembership_civicrm_post_edit_Address' . $object->is_primary);
   if ($object->is_primary == 1) {
     $constituencyName = bcndpmembership_civicrm_post_Address($object->contact_id);
-    \Drupal::logger('bcndpmembership')->notice($constituencyName);
+    //\Drupal::logger('bcndpmembership')->notice($constituencyName);
     if (!empty($constituencyName)) { //} && $constituencyName != -1) {
       bcndpmembership_retype_Membership($object->contact_id, $constituencyName, $newEndDate="", $contributionID="", $date="", $contributionType="", $contributionSource="");
     }
@@ -442,10 +442,10 @@ function bcndpmembership_civicrm_post_edit_Address($id, $object) {
 }
 
 function bcndpmembership_civicrm_post_create_Address($id, $object) {
-  \Drupal::logger('bcndpmembership')->notice('bcndpmembership_civicrm_post_create_Address' . $object->is_primary);
+  //\Drupal::logger('bcndpmembership')->notice('bcndpmembership_civicrm_post_create_Address' . $object->is_primary);
   if ($object->is_primary == 1) {
     $constituencyName = bcndpmembership_civicrm_post_Address($object->contact_id);
-    \Drupal::logger('bcndpmembership')->notice($constituencyName);
+    //\Drupal::logger('bcndpmembership')->notice($constituencyName);
     if (!empty($constituencyName)) { //} && $constituencyName != -1) {
       bcndpmembership_retype_Membership($object->contact_id, $constituencyName, $newEndDate="", $contributionID="", $date="", $contributionType="", $contributionSource="");
     }
@@ -645,7 +645,7 @@ function bcndpmembership_retype_Membership($userID, $constituencyName, $newEndDa
     }
   }
 
-  \Drupal::logger('bcndpmembership')->notice('membershipId = ' . $membershipId . 'memStatus = ' . $memStatus . 'furthest_endDate = ' . $furthest_endDate);
+  //\Drupal::logger('bcndpmembership')->notice('membershipId = ' . $membershipId . 'memStatus = ' . $memStatus . 'furthest_endDate = ' . $furthest_endDate);
 
   $new_id = $current_id = $grace_id = $expired_id = $contributionTypeForMembership_id = '';
   $params = array('name' => 'New', 'version' => 3);
@@ -697,8 +697,8 @@ function bcndpmembership_retype_Membership($userID, $constituencyName, $newEndDa
     if ($field == 'CurrentJoinDate') { $CurrentJoinDate = $custom_value; }
     }
 
-    \Drupal::logger('bcndpmembership')->notice('Station 1');
-    \Drupal::logger('bcndpmembership')->notice('ExpirationDate = ' . $ExpirationDate . 'CurrentJoinDate = ' . $CurrentJoinDate);
+    //\Drupal::logger('bcndpmembership')->notice('Station 1');
+    //\Drupal::logger('bcndpmembership')->notice('ExpirationDate = ' . $ExpirationDate . 'CurrentJoinDate = ' . $CurrentJoinDate);
 
   // KG Aug 19 - if Federal Membership has expired for more than 90 days it should have no impact
     if ($CRMID) {
@@ -746,10 +746,10 @@ function bcndpmembership_retype_Membership($userID, $constituencyName, $newEndDa
     }
   }
 
-  \Drupal::logger('bcndpmembership')->notice('MembershipConstituencyType_id = ' . $MembershipConstituencyType_id . 'userID = ' . $userID . 'source = ' . $source);
+  //\Drupal::logger('bcndpmembership')->notice('MembershipConstituencyType_id = ' . $MembershipConstituencyType_id . 'userID = ' . $userID . 'source = ' . $source);
 
   if (!empty($contributionId)) {
-    \Drupal::logger('bcndpmembership')->notice('Station 2');
+    //\Drupal::logger('bcndpmembership')->notice('Station 2');
     if ($memStatus == $new_id || $memStatus == $current_id || $memStatus == $grace_id) {
       // KG July 16
       if (!empty($CRMID)) {$newEndDate = max($ExpirationDate, $newEndDate);}
@@ -846,7 +846,7 @@ function bcndpmembership_retype_Membership($userID, $constituencyName, $newEndDa
     }
   else {
     // we came via post_Address or post_create_Membership hook
-    \Drupal::logger('bcndpmembership')->notice('Station 3');
+    //\Drupal::logger('bcndpmembership')->notice('Station 3');
     if (($memStatus == $new_id || ($memStatus == $current_id && empty($CRMID)) || ($memStatus == $grace_id && empty($CRMID)) || ($memStatus == $expired_id && empty($CRMID)) || $memStatus == $lifetime_id)) {
       $source = 'Status was: ' . $memStatus . '; Membership updated via API: retype Membership';
       $params = array(
@@ -859,7 +859,7 @@ function bcndpmembership_retype_Membership($userID, $constituencyName, $newEndDa
       $result = civicrm_api('membership','update', $params);
     }
     elseif ((empty($memStatus)) && !empty($CRMID)) {
-      \Drupal::logger('bcndpmembership')->notice('Station 4');
+      //\Drupal::logger('bcndpmembership')->notice('Station 4');
       // create a new Membership
       $newEndDate = $ExpirationDate; $date = $CurrentJoinDate;
       $source = 'Status was: ' . $memStatus . '; Membership created via API: retype Membership';
@@ -877,7 +877,7 @@ function bcndpmembership_retype_Membership($userID, $constituencyName, $newEndDa
       $result = civicrm_api('membership','create', $params);
     }
     elseif (($memStatus == $expired_id) && !empty($CRMID)) {
-      \Drupal::logger('bcndpmembership')->notice('Station 5');
+      //\Drupal::logger('bcndpmembership')->notice('Station 5');
       // create a new Membership
       $newEndDate = $ExpirationDate; $date = $CurrentJoinDate;
       $source = 'Status was: ' . $memStatus . '; Membership created via API: retype Membership';
@@ -895,7 +895,7 @@ function bcndpmembership_retype_Membership($userID, $constituencyName, $newEndDa
       $result = civicrm_api('membership','create', $params);
     }
     elseif (($memStatus == $grace_id) && !empty($CRMID) || ($memStatus == $current_id) && !empty($CRMID)) {
-      \Drupal::logger('bcndpmembership')->notice('Station 6');
+      //\Drupal::logger('bcndpmembership')->notice('Station 6');
       // updating existing Membership
       $newEndDate = max($ExpirationDate, $newEndDate, $furthest_endDate);
       $source = 'Status was: ' . $memStatus . '; KG Membership updated via API: retype Membership';
