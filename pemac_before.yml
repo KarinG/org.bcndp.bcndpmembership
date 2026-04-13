@@ -1,0 +1,1661 @@
+contact_pagebreak:
+  '#type': wizard_page
+  '#form_key': contact_pagebreak
+  '#title': 'Member Information'
+  civicrm_1_membership_1_membership_membership_type_id:
+    '#type': civicrm_options
+    '#title': 'Certification Type'
+    '#title_display': invisible
+    '#disabled': true
+    '#civicrm_live_options': 0
+    '#options':
+      25: 'CTAM Certification'
+      26: 'CPAM Certification'
+      27: 'CSAM Certification'
+    '#default_value': '[current-page:query:typeid]'
+    '#extra':
+      aslist: 1
+      multiple: 0
+    '#form_key': civicrm_1_membership_1_membership_membership_type_id
+    '#parent': civicrm_1_contact_1_fieldset_fieldset
+    '#default_option': ''
+  container_ctam:
+    '#type': container
+    '#states':
+      visible:
+        ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+          value: '25'
+    membership_title_ctam:
+      '#type': processed_text
+      '#text': '<h3>Application for CTAM Certification</h3>'
+      '#format': full_html
+  important_information_ctam:
+    '#type': message
+    '#states':
+      visible:
+        ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+          value: '25'
+    '#message_type': info
+    '#message_message': '<p><p>Important Information</p><p>This form is for individuals to apply for Certified Technical Specialist in Asset Management (CTAM) Certification.&nbsp;</p><p><strong>Step 1:</strong> If you have not done so already, you must undertake the quick CTAM self-assessment and get a positive result to receive the "CTAM application prep package".&nbsp;</p><p><strong>Step 2:</strong> Work through the steps indicated in the "CTAM application prep package".&nbsp;</p><p><strong>Step 3:</strong> Return to this page to apply, pay and submit.</p>'
+    '#message_close': true
+  container_cpam:
+    '#type': container
+    '#states':
+      visible:
+        ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+          value: '26'
+    membership_title_cpam:
+      '#type': processed_text
+      '#text': '<h3>Application for CPAM Certification</h3>'
+      '#format': full_html
+  important_information_cpam:
+    '#type': message
+    '#states':
+      visible:
+        ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+          value: '26'
+    '#message_type': info
+    '#message_message': '<p>Important Information</p><p>This form is for individuals to apply for Certified Practitioner in Asset Management (CPAM) Certification.&nbsp;</p><p><strong>Step 1:</strong> If you have not done so already, you must undertake the quick CPAM self-assessment and get a positive result to receive the "CPAM application prep package".&nbsp;</p><p><strong>Step 2:</strong> Work through the steps indicated in the "CPAM application prep package".&nbsp;</p><p><strong>Step 3:</strong> Return to this page to apply, pay and submit.</p>'
+    '#message_close': true
+  container_csam:
+    '#type': container
+    '#states':
+      visible:
+        ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+          value: '27'
+    membership_title_csam:
+      '#type': processed_text
+      '#text': '<h3>Application for CSAM Certification</h3>'
+      '#format': full_html
+  important_information_csam:
+    '#type': message
+    '#states':
+      visible:
+        ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+          value: '27'
+    '#message_type': info
+    '#message_message': '<p>Important Information</p><p>This form is for individuals to apply for Certified Senior Principal in Asset Management (CSAM) Certification.&nbsp;</p><p><strong>Step 1:</strong> If you have not done so already, you must undertake the quick CSAM self-assessment and get a positive result to receive the "CSAM application prep package".&nbsp;</p><p><strong>Step 2:</strong> Work through the steps indicated in the "CSAM application prep package".&nbsp;</p><p><strong>Step 3:</strong> Return to this page to apply, pay and submit.</p>'
+    '#message_close': true
+  no_renewals:
+    '#type': message
+    '#message_type': warning
+    '#message_message': '<h3>Already Certified?</h3><p>If you already hold a Certification that is expiring, do not use this form to renew. Instead please log in and view your options in your <a href="/user">My Account</a></p>'
+  civicrm_1_contact_1_fieldset_fieldset:
+    '#type': fieldset
+    '#title': 'Your Name'
+    '#title_tag': h3
+    '#form_key': civicrm_1_contact_1_fieldset_fieldset
+    civicrm_1_contact_1_contact_existing:
+      '#type': civicrm_contact
+      '#title': 'Existing Contact'
+      '#widget': hidden
+      '#none_prompt': '+ Create new +'
+      '#results_display':
+        display_name: display_name
+      '#allow_url_autofill': false
+      '#allow_create': 1
+      '#contact_type': individual
+      '#form_key': civicrm_1_contact_1_contact_existing
+      '#parent': civicrm_1_contact_1_fieldset_fieldset
+      '#extra': {  }
+    flexbox:
+      '#type': flexbox
+      civicrm_1_contact_1_contact_first_name:
+        '#type': textfield
+        '#counter_type': character
+        '#counter_maximum': 64
+        '#counter_maximum_message': ' '
+        '#contact_type': individual
+        '#form_key': civicrm_1_contact_1_contact_first_name
+        '#extra':
+          width: 20
+        '#parent': civicrm_1_contact_1_fieldset_fieldset
+        '#title': 'First Name'
+        '#required': true
+      civicrm_1_contact_1_contact_middle_name:
+        '#type': textfield
+        '#title': 'Middle Name (or Initial)'
+        '#counter_type': character
+        '#counter_maximum': 64
+        '#counter_maximum_message': ' '
+        '#contact_type': individual
+        '#form_key': civicrm_1_contact_1_contact_middle_name
+        '#extra':
+          width: 20
+        '#parent': civicrm_1_contact_1_fieldset_fieldset
+      civicrm_1_contact_1_contact_last_name:
+        '#type': textfield
+        '#counter_type': character
+        '#counter_maximum': 64
+        '#counter_maximum_message': ' '
+        '#contact_type': individual
+        '#form_key': civicrm_1_contact_1_contact_last_name
+        '#extra':
+          width: 20
+        '#parent': civicrm_1_contact_1_fieldset_fieldset
+        '#title': 'Last Name'
+        '#required': true
+    i_agree_to_abide_by_the_pemac_code_of_ethics:
+      '#type': checkbox
+      '#title': 'I agree to abide by the PEMAC Code of Ethics'
+      '#required': true
+    code_of_ethics:
+      '#type': more
+      '#more_title': 'Review Code of Ethics'
+      '#more': '<p>We, the members of PEMAC, recognize the importance of technologies to our employers and fellow employees and practitioners. We accept a personal obligation to our profession, its members and the community we serve. To uphold and advance the integrity, honour and dignity of the professions involved in Maintenance, Reliability and Asset Management, we hereby commit ourselves to the highest ethical and professional conduct and agree:</p><ul><li>to accept responsibility in making daily decisions consistent with the safety, health and welfare of the public, and to disclose promptly factors that might endanger them or the environment.</li><li>to avoid real or perceived conflicts of&nbsp;interest whenever possible, and to disclose them to affected parties when they do exist.</li><li>to be honest and realistic in stating claims or estimates based on available data.</li><li>to reject bribery in all of its forms.</li><li>to improve the understanding of technology, its appropriate application, and potential consequences.</li><li>to maintain and improve the prestige and competence of the maintenance profession.</li><li>to support the professional and technical societies of our various disciplines.</li><li>to undertake technological tasks for others only if qualified by training or experience, or&nbsp;after full disclosure of pertinent limitations.</li><li>to seek, accept, and offer honest criticism of technical work, to acknowledge and correct errors, and to credit properly the contributions of others.</li><li>to treat fairly all persons regardless of such factors as race, religion, gender, disability, age, or national origin.</li></ul>'
+    cpd_requirements:
+      '#type': checkbox
+      '#title': 'I understand there are Continuing Professional Development (CPD) requirements associated with Certification'
+      '#required': true
+    cpd_requirements_more:
+      '#type': more
+      '#more_title': 'Review CPD Requirements'
+      '#more': '<h5>CPD Requirements by Category&nbsp;</h5><p>Your tracked CPD hours will be evaluated based on the total accumulated on a three year, rolling basis according to the table, below.</p><p>&nbsp;</p><p><img src="/sites/default/files/2025-03/gcs_cpd_requirements.png" width="564" height="700"></p>'
+  address:
+    '#type': fieldset
+    '#title': 'Your Contact Information'
+    '#title_tag': h3
+    flexbox_02:
+      '#type': flexbox
+      civicrm_1_contact_1_email_email:
+        '#type': email
+        '#form_key': civicrm_1_contact_1_email_email
+        '#extra':
+          width: 20
+        '#parent': civicrm_1_contact_1_fieldset_fieldset
+        '#title': Email
+        '#required': true
+      civicrm_1_contact_1_phone_phone:
+        '#type': textfield
+        '#counter_type': character
+        '#counter_maximum': 32
+        '#counter_maximum_message': ' '
+        '#form_key': civicrm_1_contact_1_phone_phone
+        '#extra':
+          width: 20
+        '#parent': civicrm_1_contact_1_fieldset_fieldset
+        '#title': 'Phone Number'
+        '#required': true
+    flexbox_09:
+      '#type': flexbox
+      civicrm_1_contact_1_address_country_id:
+        '#type': civicrm_options
+        '#title': Country
+        '#options':
+          1039: Canada
+          1001: Afghanistan
+          1002: Albania
+          1003: Algeria
+          1004: 'American Samoa'
+          1005: Andorra
+          1006: Angola
+          1007: Anguilla
+          1008: Antarctica
+          1009: 'Antigua and Barbuda'
+          1010: Argentina
+          1011: Armenia
+          1012: Aruba
+          1013: Australia
+          1014: Austria
+          1015: Azerbaijan
+          1212: Bahamas
+          1016: Bahrain
+          1017: Bangladesh
+          1018: Barbados
+          1019: Belarus
+          1020: Belgium
+          1021: Belize
+          1022: Benin
+          1023: Bermuda
+          1024: Bhutan
+          1025: Bolivia
+          1250: 'Bonaire, Saint Eustatius and Saba'
+          1026: 'Bosnia and Herzegovina'
+          1027: Botswana
+          1028: 'Bouvet Island'
+          1029: Brazil
+          1030: 'British Indian Ocean Territory'
+          1032: 'Brunei Darussalam'
+          1033: Bulgaria
+          1034: 'Burkina Faso'
+          1036: Burundi
+          1037: Cambodia
+          1038: Cameroon
+          1040: 'Cape Verde'
+          1041: 'Cayman Islands'
+          1042: 'Central African Republic'
+          1043: Chad
+          1044: Chile
+          1045: China
+          1046: 'Christmas Island'
+          1047: 'Cocos (Keeling) Islands'
+          1048: Colombia
+          1049: Comoros
+          1051: 'Congo, Republic Of The'
+          1050: 'Congo, The Democratic Republic of the'
+          1052: 'Cook Islands'
+          1053: 'Costa Rica'
+          1055: Croatia
+          1056: Cuba
+          1248: Curaçao
+          1057: Cyprus
+          1058: 'Czech Republic'
+          1054: 'Côte d’Ivoire'
+          1059: Denmark
+          1060: Djibouti
+          1061: Dominica
+          1062: 'Dominican Republic'
+          1064: Ecuador
+          1065: Egypt
+          1066: 'El Salvador'
+          1067: 'Equatorial Guinea'
+          1068: Eritrea
+          1069: Estonia
+          1203: Eswatini
+          1070: Ethiopia
+          1072: 'Falkland Islands (Malvinas)'
+          1073: 'Faroe Islands'
+          1074: Fiji
+          1075: Finland
+          1076: France
+          1077: 'French Guiana'
+          1078: 'French Polynesia'
+          1079: 'French Southern Territories'
+          1080: Gabon
+          1213: Gambia
+          1081: Georgia
+          1082: Germany
+          1083: Ghana
+          1084: Gibraltar
+          1085: Greece
+          1086: Greenland
+          1087: Grenada
+          1088: Guadeloupe
+          1089: Guam
+          1090: Guatemala
+          1245: Guernsey
+          1091: Guinea
+          1092: Guinea-Bissau
+          1093: Guyana
+          1094: Haiti
+          1095: 'Heard Island and McDonald Islands'
+          1096: 'Holy See (Vatican City State)'
+          1097: Honduras
+          1098: 'Hong Kong'
+          1099: Hungary
+          1100: Iceland
+          1101: India
+          1102: Indonesia
+          1103: 'Iran, Islamic Republic of'
+          1104: Iraq
+          1105: Ireland
+          1246: 'Isle of Man'
+          1106: Israel
+          1107: Italy
+          1108: Jamaica
+          1109: Japan
+          1244: Jersey
+          1110: Jordan
+          1111: Kazakhstan
+          1112: Kenya
+          1113: Kiribati
+          1114: "Korea, Democratic People's Republic of"
+          1115: 'Korea, Republic of'
+          1251: Kosovo
+          1116: Kuwait
+          1117: Kyrgyzstan
+          1118: "Lao People's Democratic Republic"
+          1119: Latvia
+          1120: Lebanon
+          1121: Lesotho
+          1122: Liberia
+          1123: Libya
+          1124: Liechtenstein
+          1125: Lithuania
+          1126: Luxembourg
+          1127: Macao
+          1129: Madagascar
+          1130: Malawi
+          1131: Malaysia
+          1132: Maldives
+          1133: Mali
+          1134: Malta
+          1135: 'Marshall Islands'
+          1136: Martinique
+          1137: Mauritania
+          1138: Mauritius
+          1139: Mayotte
+          1140: Mexico
+          1141: 'Micronesia, Federated States of'
+          1142: Moldova
+          1143: Monaco
+          1144: Mongolia
+          1243: Montenegro
+          1145: Montserrat
+          1146: Morocco
+          1147: Mozambique
+          1035: Myanmar
+          1148: Namibia
+          1149: Nauru
+          1150: Nepal
+          1152: Netherlands
+          1153: 'New Caledonia'
+          1154: 'New Zealand'
+          1155: Nicaragua
+          1156: Niger
+          1157: Nigeria
+          1158: Niue
+          1159: 'Norfolk Island'
+          1128: 'North Macedonia'
+          1160: 'Northern Mariana Islands'
+          1161: Norway
+          1162: Oman
+          1163: Pakistan
+          1164: Palau
+          1165: 'Palestine, State of'
+          1166: Panama
+          1167: 'Papua New Guinea'
+          1168: Paraguay
+          1169: Peru
+          1170: Philippines
+          1171: Pitcairn
+          1172: Poland
+          1173: Portugal
+          1174: 'Puerto Rico'
+          1175: Qatar
+          1179: Reunion
+          1176: Romania
+          1177: 'Russian Federation'
+          1178: Rwanda
+          1252: 'Saint Barthélemy'
+          1180: 'Saint Helena'
+          1181: 'Saint Kitts and Nevis'
+          1182: 'Saint Lucia'
+          1253: 'Saint Martin (French part)'
+          1183: 'Saint Pierre and Miquelon'
+          1184: 'Saint Vincent and the Grenadines'
+          1185: Samoa
+          1186: 'San Marino'
+          1207: 'Sao Tome and Principe'
+          1187: 'Saudi Arabia'
+          1188: Senegal
+          1242: Serbia
+          1238: 'Serbia and Montenegro'
+          1189: Seychelles
+          1190: 'Sierra Leone'
+          1191: Singapore
+          1249: 'Sint Maarten (Dutch Part)'
+          1192: Slovakia
+          1193: Slovenia
+          1194: 'Solomon Islands'
+          1195: Somalia
+          1196: 'South Africa'
+          1197: 'South Georgia and the South Sandwich Islands'
+          1247: 'South Sudan'
+          1198: Spain
+          1199: 'Sri Lanka'
+          1200: Sudan
+          1201: Suriname
+          1202: 'Svalbard and Jan Mayen'
+          1204: Sweden
+          1205: Switzerland
+          1206: 'Syrian Arab Republic'
+          1208: Taiwan
+          1209: Tajikistan
+          1210: 'Tanzania, United Republic of'
+          1211: Thailand
+          1063: Timor-Leste
+          1214: Togo
+          1215: Tokelau
+          1216: Tonga
+          1217: 'Trinidad and Tobago'
+          1218: Tunisia
+          1219: Turkey
+          1220: Turkmenistan
+          1221: 'Turks and Caicos Islands'
+          1222: Tuvalu
+          1223: Uganda
+          1224: Ukraine
+          1225: 'United Arab Emirates'
+          1226: 'United Kingdom'
+          1228: 'United States'
+          1227: 'United States Minor Outlying Islands'
+          1229: Uruguay
+          1230: Uzbekistan
+          1231: Vanuatu
+          1232: Venezuela
+          1233: 'Viet Nam'
+          1031: 'Virgin Islands, British'
+          1234: 'Virgin Islands, U.S.'
+          1235: 'Wallis and Futuna'
+          1236: 'Western Sahara'
+          1237: Yemen
+          1239: Zambia
+          1240: Zimbabwe
+          1241: 'Åland Islands'
+        '#default_value': '1039'
+        '#extra':
+          aslist: 1
+          multiple: 0
+        '#form_key': civicrm_1_contact_1_address_country_id
+        '#parent': civicrm_1_contact_1_fieldset_fieldset
+        '#default_option': '1039'
+        '#civicrm_live_options': '1'
+        '#required': true
+      civicrm_1_contact_1_address_state_province_id:
+        '#type': civicrm_options
+        '#title': State/Province
+        '#empty_option': '- None -'
+        '#civicrm_live_options': 0
+        '#required': true
+        '#extra':
+          aslist: 1
+          multiple: 0
+        '#form_key': civicrm_1_contact_1_address_state_province_id
+        '#parent': civicrm_1_contact_1_fieldset_fieldset
+        '#default_option': null
+        '#default_value': null
+        '#options': {  }
+      civicrm_1_contact_1_address_city:
+        '#type': textfield
+        '#counter_type': character
+        '#counter_maximum': 64
+        '#counter_maximum_message': ' '
+        '#extra':
+          width: 20
+        '#form_key': civicrm_1_contact_1_address_city
+        '#parent': civicrm_1_contact_1_fieldset_fieldset
+        '#title': City
+        '#required': true
+    flexbox_03:
+      '#type': flexbox
+      civicrm_1_contact_1_address_street_address:
+        '#type': textfield
+        '#title': 'Street Address'
+        '#required': true
+        '#counter_type': character
+        '#counter_maximum': 96
+        '#counter_maximum_message': ' '
+        '#flex': 2
+        '#extra':
+          width: 60
+        '#form_key': civicrm_1_contact_1_address_street_address
+        '#parent': civicrm_1_contact_1_fieldset_fieldset
+      civicrm_1_contact_1_address_supplemental_address_1:
+        '#type': textfield
+        '#counter_type': character
+        '#counter_maximum': 96
+        '#counter_maximum_message': ' '
+        '#extra':
+          width: 60
+        '#form_key': civicrm_1_contact_1_address_supplemental_address_1
+        '#parent': civicrm_1_contact_1_fieldset_fieldset
+        '#title': 'Street Address Line 2'
+      civicrm_1_contact_1_address_postal_code:
+        '#type': textfield
+        '#counter_type': character
+        '#counter_maximum': 64
+        '#counter_maximum_message': ' '
+        '#extra':
+          width: 7
+        '#form_key': civicrm_1_contact_1_address_postal_code
+        '#parent': civicrm_1_contact_1_fieldset_fieldset
+        '#title': 'Postal Code'
+        '#required': true
+  civicrm_2_contact_1_fieldset_fieldset:
+    '#type': fieldset
+    '#title': 'Your Employer'
+    '#form_key': civicrm_2_contact_1_fieldset_fieldset
+    '#parent': contact_pagebreak
+    civicrm_2_contact_1_contact_existing:
+      '#type': civicrm_contact
+      '#title': 'Existing Contact'
+      '#widget': hidden
+      '#none_prompt': '+ Create new +'
+      '#results_display':
+        display_name: display_name
+      '#default': relationship
+      '#default_relationship_to': '1'
+      '#default_relationship':
+        5_b: 5_b
+      '#allow_url_autofill': false
+      '#filter_relationship_contact': ''
+      '#check_permissions': 0
+      '#allow_create': 1
+      '#contact_type': organization
+      '#form_key': civicrm_2_contact_1_contact_existing
+      '#parent': civicrm_2_contact_1_fieldset_fieldset
+      '#extra': {  }
+    flexbox_12:
+      '#type': flexbox
+      civicrm_1_contact_1_cg1_custom_75:
+        '#type': textfield
+        '#title': Employer
+        '#required': true
+        '#counter_type': character
+        '#counter_maximum': 255
+        '#counter_maximum_message': ' '
+        '#data_type': String
+        '#extra':
+          description: 'Name and address of your current employer.'
+          description_above: 0
+          width: 20
+        '#has_help': true
+        '#form_key': civicrm_1_contact_1_cg1_custom_75
+        '#parent': civicrm_1_contact_1_cg1_fieldset
+      civicrm_1_contact_1_contact_job_title:
+        '#type': textfield
+        '#counter_type': character
+        '#counter_maximum': 255
+        '#counter_maximum_message': ' '
+        '#contact_type': individual
+        '#form_key': civicrm_1_contact_1_contact_job_title
+        '#extra':
+          width: 20
+        '#parent': civicrm_1_contact_1_fieldset_fieldset
+        '#title': 'Job Title'
+        '#required': true
+    manager_letter_options:
+      '#type': section
+      '#title': 'Manager Letter Options'
+      '#title_tag': h3
+      would_you_like_a_letter_sent_to_your_manager_:
+        '#type': radios
+        '#title': 'Would you like us to send a letter to your manager if you are successful in earning this certification?'
+        '#description': '<p>We would be happy to send a letter to your manager notifying them of your new Certification. If you select "Yes" please provide further information, below.</p>'
+        '#options': yes_no
+        '#options_display': side_by_side
+        '#required': true
+        '#default_value': 'No'
+        '#wrapper_type': form_element
+      flexbox_20:
+        '#type': flexbox
+        '#states':
+          visible:
+            ':input[name="would_you_like_a_letter_sent_to_your_manager_"]':
+              value: 'Yes'
+        manager_first_name:
+          '#type': textfield
+          '#title': 'Manager First Name'
+          '#required': true
+        manager_last_name:
+          '#type': textfield
+          '#title': 'Manager Last Name'
+          '#required': true
+        manager_email_address:
+          '#type': email
+          '#title': 'Manager email address'
+          '#required': true
+  discount:
+    '#type': radios
+    '#title': 'Discount Claimed'
+    '#options':
+      '0.5': 'I am a Full Time University Student -OR- I am Retired'
+      '0.75': 'I am an Employee of a Corporate / Allied Member (type employer below)'
+      0: 'One of these applies to me: a) I have never used the "First Year Free" offer that came with Participation in an MMP or AMP Course -OR- b) I have a Membership that is current, please transfer the remaining balance on my Membership to my Certification -OR- c) I am currently currently unemployed'
+      1: 'None of the above apply to me'
+    '#required': true
+    '#default_value': '1'
+  civicrm_3_contact_1_contact_existing:
+    '#type': civicrm_contact
+    '#title': 'I confirm that I am employed by this Corporate / Allied Member:'
+    '#widget': autocomplete
+    '#search_prompt': '- Choose existing -'
+    '#none_prompt': '- None Found -'
+    '#results_display':
+      nick_name: nick_name
+    '#required': true
+    '#states':
+      visible:
+        ':input[name="discount"]':
+          value: '0.75'
+    '#states_clear': false
+    '#default_relationship_to': '1'
+    '#default_relationship':
+      '': ''
+    '#allow_url_autofill': false
+    '#group':
+      '': ''
+    '#tag':
+      63: '63'
+    '#filter_relationship_contact': ''
+    '#check_permissions': 0
+    '#contact_type': organization
+    '#form_key': civicrm_3_contact_1_contact_existing
+    '#parent': civicrm_3_contact_1_fieldset_fieldset
+    '#extra': {  }
+  list_of_corporate_and_allied_members:
+    '#type': details
+    '#title': 'List of Corporate and Allied Members'
+    '#states':
+      visible:
+        ':input[name="discount"]':
+          value: '0.75'
+    corporate_allied_members:
+      '#type': view
+      '#name': corporate_allied_members
+      '#display_id': block_1
+  civicrm_1_membership_1_membership_financial_type_id:
+    '#type': civicrm_options
+    '#title': 'For tax purposes, please confirm your province of residence'
+    '#civicrm_live_options': 0
+    '#options':
+      10: 'ON'
+      2: 'AB, BC, MB, NT, NU, QC, SK, YT'
+      128: NS
+      11: 'NB, NL, PE'
+      12: 'I am not a resident of Canada'
+    '#required': true
+    '#default_value': '10'
+    '#form_key': civicrm_1_membership_1_membership_financial_type_id
+    '#parent': civicrm_1_contact_1_fieldset_fieldset
+    '#default_option': '10'
+  total_amount_before_tax:
+    '#type': fieldset
+    '#title': 'Total Amount before Tax'
+    flexbox_11:
+      '#type': flexbox
+      expiry_date:
+        '#type': radios
+        '#title': 'Membership Term'
+        '#title_display': invisible
+        '#options':
+          1: 'Individual Certification - Expiry date: 31 August 2026'
+        '#required': true
+        '#default_value': '1'
+      civicrm_1_membership_1_membership_fee_amount:
+        '#type': computed_twig
+        '#title': 'Computed Amount [$]'
+        '#description': '<p>Includes non-refundable application fee.</p><ul><li>CTAM - $25</li><li>CPAM - $50</li><li>CSAM - $50</li></ul>'
+        '#template': |
+          {% if data.civicrm_1_membership_1_membership_membership_type_id == '25' %}
+          {% set amount = 185 %}
+          {{ ((((('2026-08-31'|date("U") - "now"|date("U") ))/86400/365*amount))*data.discount+25)|round(2, 'floor')|number_format(2) }}
+          {% elseif data.civicrm_1_membership_1_membership_membership_type_id == '26'%}
+          {% set amount = 235 %}
+          {{ ((((('2026-08-31'|date("U") - "now"|date("U") ))/86400/365*amount))*data.discount+50)|round(2, 'floor')|number_format(2) }}
+          {% elseif data.civicrm_1_membership_1_membership_membership_type_id == '27'%}
+          {% set amount = 295 %}
+          {{ ((((('2026-08-31'|date("U") - "now"|date("U") ))/86400/365*amount))*data.discount+50)|round(2, 'floor')|number_format(2) }}
+          {% endif %}
+        '#store': true
+        '#ajax': true
+        '#data_type': Money
+        '#extra':
+          field_prefix: $
+          point: .
+          separator: ','
+          decimals: 2
+          min: 0
+        '#form_key': civicrm_1_membership_1_membership_fee_amount
+        '#parent': civicrm_1_contact_1_fieldset_fieldset
+application_information:
+  '#type': wizard_page
+  '#title': 'Application Information'
+  '#open': true
+  '#prev_button_label': Back
+  '#next_button_label': Forward
+  resume:
+    '#type': fieldset
+    '#title': Resume
+    resume_file:
+      '#type': managed_file
+      '#title': 'Resume File'
+      '#description': '<p>Please attach an&nbsp;updated resume in .pdf format that indicates all of the following:</p><p>1) Summary of asset management related&nbsp;experience which includes the nature, size and criticality of the asset portfolio for each role</p><p>2) Post-secondary education</p><p>3) Relevant asset-management education&nbsp;or training (in addition to your base qualification indicated in&nbsp;2)</p><p>4) Relevant Certifications or Professional designations. Include&nbsp;the website URL for the&nbsp;professional body that has issued them if relevant</p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#help_display': element_after
+      '#file_help': help
+      '#max_filesize': '56'
+      '#file_extensions': pdf
+      '#sanitize': true
+  participation_in_recognized_programs:
+    '#type': checkboxes_other
+    '#title': 'Participation in recognized programs'
+    '#description': '<p>Indicate whether you have completed any of the following or received PLAR:</p><p>(This list is expected to grow.)</p>'
+    '#description_display': before
+    '#options':
+      'PEMAC - MMP - Module 1 - An Integrated Strategy for Maintenance Management': 'PEMAC - MMP - Module 1 - An Integrated Strategy for Maintenance Management'
+      'PEMAC - MMP - Module 2 - Production and Operations Management for the Maintenance Manager': 'PEMAC - MMP - Module 2 - Production and Operations Management for the Maintenance Manager'
+      'PEMAC - MMP - Module 3 - Human Resources Management for the Maintenance Manager': 'PEMAC - MMP - Module 3 - Human Resources Management for the Maintenance Manager'
+      'PEMAC - MMP - Module 4 - Financial Management for the Maintenance Manager': 'PEMAC - MMP - Module 4 - Financial Management for the Maintenance Manager'
+      'PEMAC - MMP - Module 5 – Maintenance Strategy Development': 'PEMAC - MMP - Module 5 – Maintenance Strategy Development'
+      'PEMAC - MMP - Module 6 - Maintenance Work Management': 'PEMAC - MMP - Module 6 - Maintenance Work Management'
+      'PEMAC - MMP - Module 7 – Maintenance Information Management': 'PEMAC - MMP - Module 7 – Maintenance Information Management'
+      'PEMAC - MMP - Module 8 - Capstone Project': 'PEMAC - MMP - Module 8 - Capstone Project'
+      'PEMAC - AMP - Course 1 - Asset Management Principles and Strategic Development': 'PEMAC - AMP - Course 1 - Asset Management Principles and Strategic Development'
+      'PEMAC - AMP - Course 2 - Asset Management Capabilities Development': 'PEMAC - AMP - Course 2 - Asset Management Capabilities Development'
+      'PEMAC - AMP - Course 3 - Risk Management & Performance Improvement': 'PEMAC - AMP - Course 3 - Risk Management & Performance Improvement'
+      'PEMAC - AMP - Course 4 - Developing and Implementing Asset Lifecycle Delivery Activities': 'PEMAC - AMP - Course 4 - Developing and Implementing Asset Lifecycle Delivery Activities'
+      'PEMAC - AMP - Course 5 - Asset Knowledge Management': 'PEMAC - AMP - Course 5 - Asset Knowledge Management'
+      'PEMAC - AMP - Course 6 - Capstone': 'PEMAC - AMP - Course 6 - Capstone'
+      'NAMS Canada - Professional Certificate in AM Planning': 'NAMS Canada - Professional Certificate in AM Planning'
+      'NAMS Canada - Integrating AM and Governance': 'NAMS Canada - Integrating AM and Governance'
+      'Seneca College - Strategic Asset Management – ASM Graduate Certificate': 'Seneca College - Strategic Asset Management – ASM Graduate Certificate'
+      'University of Calgary - Fundamentals of Infrastructure Asset Management and Sustainability': 'University of Calgary - Fundamentals of Infrastructure Asset Management and Sustainability'
+      'University of Calgary - Asset Management Strategy and Finance': 'University of Calgary - Asset Management Strategy and Finance'
+      'Central Queensland University - Graduate Certificate in Asset and Maintenance Management (CC19)': 'Central Queensland University - Graduate Certificate in Asset and Maintenance Management (CC19)'
+      'Pass Mark on the WPiAM CAMA Exam': 'Pass Mark on the WPiAM CAMA Exam'
+  transcripts:
+    '#type': fieldset
+    '#title': Transcripts
+    i_will_email_my_transcripts:
+      '#type': checkbox
+      '#title': 'I will Email my transcripts'
+    flexbox_21:
+      '#type': flexbox
+      transcript_1:
+        '#type': managed_file
+        '#title': 'Upload Transcript #1'
+        '#states':
+          visible-slide:
+            ':input[name="i_will_email_my_transcripts"]':
+              unchecked: true
+        '#file_extensions': pdf
+        '#sanitize': true
+      transcript_2:
+        '#type': managed_file
+        '#title': 'Upload Transcript #2 (Optional)'
+        '#states':
+          visible-slide:
+            ':input[name="i_will_email_my_transcripts"]':
+              unchecked: true
+        '#file_extensions': pdf
+        '#sanitize': true
+  competency_narratives:
+    '#type': fieldset
+    '#title': 'Competency Narratives'
+    '#description': '<p>Please share narratives that demonstrate experience for each required competency into the form fields below.</p><p>Though you may have many stories to tell about your relevant experience, please use only as many narratives as necessary to address each competency.</p><p>There is a checklist below the narrative section for confirming that you have covered each of the required competencies&nbsp;with your narratives.</p>'
+    '#description_display': before
+    narrative_1:
+      '#type': textarea
+      '#title': 'Narrative 1'
+      '#title_display': before
+      '#required': true
+    narrative_2:
+      '#type': textarea
+      '#title': 'Narrative 2'
+      '#title_display': before
+      '#required': true
+    narrative_3:
+      '#type': textarea
+      '#title': 'Narrative 3'
+      '#title_display': before
+      '#required': true
+    narrative_4:
+      '#type': textarea
+      '#title': 'Narrative 4 (Optional)'
+      '#title_display': before
+    narrative_5_optional:
+      '#type': textarea
+      '#title': 'Narrative 5 (Optional)'
+      '#title_display': before
+      '#states':
+        visible:
+          - ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+              value: '26'
+          - xor
+          - ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+              value: '27'
+    narrative_6_optional:
+      '#type': textarea
+      '#title': 'Narrative 6 (Optional)'
+      '#title_display': before
+      '#states':
+        visible:
+          - ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+              value: '26'
+          - xor
+          - ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+              value: '27'
+    narrative_mapping_ctam:
+      '#type': likert
+      '#title': 'Narrative Instructions'
+      '#description': '<h3>CTAM Competency Checklist</h3><p>The list below is intended to help you ensure you have covered the required competencies with your chosen narratives.</p><p>For each required CTAM competency (listed on the left, below) indicated which of your narratives (listed on the right, below) offers the best evidence.</p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+            value: '25'
+      '#questions':
+        '1. Plan efficient and effective implementation': '1. Plan efficient and effective implementation'
+        '2. Implement in a proficient manner': '2. Implement in a proficient manner'
+        '3. Provide timely and accurate reports': '3. Provide timely and accurate reports'
+        '4. Identify and implement ongoing practice improvement': '4. Identify and implement ongoing practice improvement'
+        '5. Apply general management skills': '5. Apply general management skills'
+      '#answers':
+        'Narrative 1': 'Narrative 1'
+        'Narrative 2': 'Narrative 2'
+        'Narrative 3': 'Narrative 3'
+        'Narrative 4 (Optional)': 'Narrative 4 (Optional)'
+      '#sticky': false
+    narrative_mapping_cpam:
+      '#type': likert
+      '#title': 'Narrative Instructions'
+      '#description': '<h3>CPAM Competency Checklist</h3><p>The list below is intended to help you ensure you have covered the required competencies with your chosen narratives.</p><p>For each required CPAM competency (listed on the left, below) indicated which of your narratives (listed on the right, below) offers the best evidence.</p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+            value: '26'
+      '#questions':
+        '1. Review and recommend Asset Management Policy': '1. Review and recommend Asset Management Policy'
+        '2. Provide inputs to the review and development of a Strategic Asset Management Plan (SAMP)': '2. Provide inputs to the review and development of a Strategic Asset Management Plan (SAMP)'
+        '3. Provide substantive contribution to the review and development of Asset Management Plans': '3. Provide substantive contribution to the review and development of Asset Management Plans'
+        '4. Monitor the implementation of Asset Management Plans': '4. Monitor the implementation of Asset Management Plans'
+        '5. Review and develop Asset Management Framework documents and artefacts': '5. Review and develop Asset Management Framework documents and artefacts'
+        '6. Implement effective and efficient planning': '6. Implement effective and efficient planning'
+        '7. Report Asset Management Activities': '7. Report Asset Management Activities'
+        '8. Drive ongoing practice improvement': '8. Drive ongoing practice improvement'
+        '9. Monitor the implementation of Asset Management Framework improvement': '9. Monitor the implementation of Asset Management Framework improvement'
+        '10. Align and integrate Domain activities across the Asset Management Framework': '10. Align and integrate Domain activities across the Asset Management Framework'
+        '11. Provide competent leadership and management': '11. Provide competent leadership and management'
+      '#answers':
+        'Narrative 1': 'Narrative 1'
+        'Narrative 2': 'Narrative 2'
+        'Narrative 3': 'Narrative 3'
+        'Narrative 4 (Optional)': 'Narrative 4 (Optional)'
+        'Narrative 5 (Optional)': 'Narrative 5 (Optional)'
+        'Narrative 6 (Optional)': 'Narrative 6 (Optional)'
+      '#sticky': false
+    narrative_mapping_csam:
+      '#type': likert
+      '#title': 'Narrative Instructions'
+      '#description': '<h3>CSAM Competency Checklist</h3><p>The list below is intended to help you ensure you have covered the required competencies with your chosen narratives.</p><p>For each required CSAM competency (listed on the left, below) indicated which of your narratives (listed on the right, below) offers the best evidence.</p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+            value: '27'
+      '#questions':
+        '1. Lead the review and development of an Asset Management Policy': '1. Lead the review and development of an Asset Management Policy'
+        '2. Lead the review and development of a Strategic Asset Management Plan (SAMP)': '2. Lead the review and development of a Strategic Asset Management Plan (SAMP)'
+        '3. Lead the review and development of Asset Management Plans (AMPs)': '3. Lead the review and development of Asset Management Plans (AMPs)'
+        '4. Monitor the implementation of Asset Management Plans': '4. Monitor the implementation of Asset Management Plans'
+        '5. Lead the review and development of Asset Management Framework (AMF) Documents and Artefacts': '5. Lead the review and development of Asset Management Framework (AMF) Documents and Artefacts'
+        '6. Monitor the implementation of the Asset Management Framework Documents and Artefacts': '6. Monitor the implementation of the Asset Management Framework Documents and Artefacts'
+        '7. Monitor implementation of Asset Management Practices Improvement Plans': '7. Monitor implementation of Asset Management Practices Improvement Plans'
+        '8. Align and integrate AM practice': '8. Align and integrate AM practice'
+        '9. Provide AM leadership': '9. Provide AM leadership'
+      '#answers':
+        'Narrative 1': 'Narrative 1'
+        'Narrative 2': 'Narrative 2'
+        'Narrative 3': 'Narrative 3'
+        'Narrative 4 (Optional)': 'Narrative 4 (Optional)'
+        'Narrative 5 (Optional)': 'Narrative 5 (Optional)'
+        'Narrative 6 (Optional)': 'Narrative 6 (Optional)'
+      '#sticky': false
+  portfolio_instructions:
+    '#type': fieldset
+    '#title': 'Portfolio Instructions'
+    '#description': '<p>Upload specific documents that provide evidence of the competencies&nbsp;which have been described in your narratives. The document titles, below are placeholder examples. It is acknowledged that specifics will vary depending on the role, type of organization and type of project.</p><p>Before uploading, name each&nbsp;file&nbsp;as follows:</p><p style="margin-left:40px;">YourLastName_YourFirstInitial_ItemDescription_NarrativeNumber.pdf&nbsp;</p><p style="margin-left:40px;">For example: <strong>Smith_J_AMPolicy_Narrative3.pdf</strong></p><p>If you have concerns about sharing any of these documents due to proprietary considerations, note that it will be possible to show them, instead,&nbsp;to the certification assessors during the interview. In that case, upload a document that indicates the items that you will share during the interview.</p><p>It is acknowledged that organizations use different terminology and may combine some standard Asset Management portfolio documents with other organizational documentation. Documents that would be equivalent to these will be considered.</p>'
+    '#description_display': before
+    portfolio_item_1:
+      '#type': managed_file
+      '#title': 'Portfolio Items'
+      '#multiple': 10
+      '#help_title': 'More Information'
+      '#help_display': element_after
+      '#file_help': help
+      '#max_filesize': '56'
+      '#file_extensions': pdf
+      '#sanitize': true
+  subject_breadth:
+    '#type': fieldset
+    '#title': 'Subject Breadth'
+    ctam_subject_breadth:
+      '#type': markup
+      '#states':
+        visible:
+          ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+            value: '25'
+      '#markup': '<p>Please self-assess your experience against each of the subject categories&nbsp;&nbsp;of Asset Management.</p><p>For CTAM&nbsp;certification is for "Technical Specialists", meaning that the some depth of experience is required in <u>one</u> area (which could be even one sub-item&nbsp;on the list below). In addition to the technical specialty, an understanding&nbsp;of the interactions between these subjects is required.</p>'
+    cpam_subject_breadth:
+      '#type': markup
+      '#states':
+        visible:
+          ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+            value: '26'
+      '#markup': '<p>Please self-assess your experience against each of the subject categories&nbsp;&nbsp;of Asset Management.</p><p>A combination breadth and depth is required for CPAM&nbsp;certification. Full breadth and depth is not possible or required.</p>'
+    csam_subject_breadth:
+      '#type': markup
+      '#states':
+        visible:
+          ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+            value: '27'
+      '#markup': '<p>Please self-assess your experience against each of the subject categories&nbsp;of Asset Management.</p><p>A combination breadth and depth is required for CSAM certification. Full breadth and depth is not possible or required.</p><p>The assessors will cross reference your self-assessment to your narratives, portfolio and resume and this exercise is likely to inform their interview questions.</p>'
+    seven_subject_areas_ctam:
+      '#type': likert
+      '#title': 'Seven Subject Areas of Asset Management (reference GFMAM AM Landscape 3rd Edition)'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+            value: '25'
+      '#questions':
+        'Context and Stakeholders: Organisational Purpose & Context, Stakeholder Management, Asset Costing & Valuation': 'Context and Stakeholders: Organisational Purpose & Context, Stakeholder Management, Asset Costing & Valuation'
+        'Governance: Asset Management Policy, Asset Management System, Asset Management Assurance & Audit, Technical Standards & Legislat': 'Governance: Asset Management Policy, Asset Management System, Asset Management Assurance & Audit, Technical Standards & Legislat'
+        'AM Planning: AM Strategy & Objectives, Demand Analysis, Sustainable Development, Asset Management Planning, Decision-Making, Lif': 'AM Planning: AM Strategy & Objectives, Demand Analysis, Sustainable Development, Asset Management Planning, Decision-Making, Lif'
+        'Leadership and people: Asset Management Leadership, Organisational Arrangements, Organisational Culture, Competence Management, ': 'Leadership and people: Asset Management Leadership, Organisational Arrangements, Organisational Culture, Competence Management, '
+        'Data and Information: Asset Management Data & Information Strategy, Asset Data & Information Standards, Asset Management Data & ': 'Data and Information: Asset Management Data & Information Strategy, Asset Data & Information Standards, Asset Management Data & '
+        'Delivery: Asset Creation & Acquisition, Systems Engineering, Maintenance Delivery, Integrated Reliability, Asset Operations, Inc': 'Delivery: Asset Creation & Acquisition, Systems Engineering, Maintenance Delivery, Integrated Reliability, Asset Operations, Inc'
+        'Value realization: Outcomes & Impacts, Monitoring, Continuous Improvement': 'Value realization: Outcomes & Impacts, Monitoring, Continuous Improvement'
+      '#answers':
+        'I can’t demonstrate any significant knowledge or experience': 'I can’t demonstrate any significant knowledge or experience'
+        'Some knowledge and experience across a few roles, initiatives and/or projects': 'Some knowledge and experience across a few roles, initiatives and/or projects'
+        'Both knowledge and experience across several roles, initiatives and/or projects': 'Both knowledge and experience across several roles, initiatives and/or projects'
+        'Significant depth of experience over years and several roles, initiatives and/or projects': 'Significant depth of experience over years and several roles, initiatives and/or projects'
+      '#sticky': false
+    seven_subject_areas_cpam_csam:
+      '#type': likert
+      '#title': 'Seven Subject Areas of Asset Management (reference GFMAM AM Landscape 3rd Edition)'
+      '#required': true
+      '#states':
+        visible:
+          - ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+              value: '26'
+          - or
+          - ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+              value: '27'
+      '#questions':
+        'Context and Stakeholders: Organisational Purpose & Context, Stakeholder Management, Asset Costing & Valuation': 'Context and Stakeholders: Organisational Purpose & Context, Stakeholder Management, Asset Costing & Valuation'
+        'Governance: Asset Management Policy, Asset Management System, Asset Management Assurance & Audit, Technical Standards & Legislat': 'Governance: Asset Management Policy, Asset Management System, Asset Management Assurance & Audit, Technical Standards & Legislat'
+        'AM Planning: AM Strategy & Objectives, Demand Analysis, Sustainable Development, Asset Management Planning, Decision-Making, Lif': 'AM Planning: AM Strategy & Objectives, Demand Analysis, Sustainable Development, Asset Management Planning, Decision-Making, Lif'
+        'Leadership and people: Asset Management Leadership, Organisational Arrangements, Organisational Culture, Competence Management, ': 'Leadership and people: Asset Management Leadership, Organisational Arrangements, Organisational Culture, Competence Management, '
+        'Data and Information: Asset Management Data & Information Strategy, Asset Data & Information Standards, Asset Management Data & ': 'Data and Information: Asset Management Data & Information Strategy, Asset Data & Information Standards, Asset Management Data & '
+        'Delivery: Asset Creation & Acquisition, Systems Engineering, Maintenance Delivery, Integrated Reliability, Asset Operations, Inc': 'Delivery: Asset Creation & Acquisition, Systems Engineering, Maintenance Delivery, Integrated Reliability, Asset Operations, Inc'
+        'Value realization: Outcomes & Impacts, Monitoring, Continuous Improvement': 'Value realization: Outcomes & Impacts, Monitoring, Continuous Improvement'
+      '#answers':
+        'I can’t demonstrate any significant knowledge or experience': 'I can’t demonstrate any significant knowledge or experience'
+        'Some knowledge and experience across a few roles, initiatives and/or projects': 'Some knowledge and experience across a few roles, initiatives and/or projects'
+        'Both knowledge and experience across several roles, initiatives and/or projects': 'Both knowledge and experience across several roles, initiatives and/or projects'
+        'Significant depth of experience over years and several roles, initiatives and/or projects': 'Significant depth of experience over years and several roles, initiatives and/or projects'
+        'Expert-level due to a combination of years of formal study and with significant progressive years of experience across asset management roles, initiatives and projects': 'Expert-level due to a combination of years of formal study and with significant progressive years of experience across asset management roles, initiatives and projects'
+      '#sticky': false
+  references:
+    '#type': fieldset
+    '#title': References
+    '#description': '<p>Please upload the contact information for your&nbsp;references using the format provided in the preparation package.</p><p>Be advised that we will send your references the relevant narrative and supporting documents that you have provided. If there is any concern about this please explain.</p>'
+    '#description_display': before
+    references_upload:
+      '#type': managed_file
+      '#title': 'References Upload'
+      '#more_title': 'More Information'
+      '#title_display': invisible
+      '#help_display': element_after
+      '#file_help': help
+      '#max_filesize': '56'
+      '#file_extensions': pdf
+      '#sanitize': true
+contribution_pagebreak:
+  '#type': wizard_page
+  '#form_key': contribution_pagebreak
+  '#title': Payment
+  civicrm_1_contact_1_cg5_custom_7:
+    '#type': civicrm_options
+    '#title': 'Online Member Directory (visible only to other Members)'
+    '#civicrm_live_options': 0
+    '#options':
+      1: 'Please do not add me to the Member Directory (or remove me if I am on it)'
+      0: 'Please include me on the Member Directory'
+    '#required': true
+    '#data_type': Boolean
+    '#form_key': civicrm_1_contact_1_cg5_custom_7
+    '#parent': civicrm_1_contact_1_cg5_fieldset
+    '#default_option': ''
+    '#default_value': ''
+  social_media_permission:
+    '#type': fieldset
+    '#title': 'Social Media Permission'
+    from_time_to_time_pemac_announces_and_welcomes_new_members_on_it:
+      '#type': radios
+      '#title': 'PEMAC occasionally welcomes new member and / or celebrates the awarding of certifications through our website and social media. If you are a new member and / or have achieved certification, may we announce this on our platforms?'
+      '#options': yes_no
+      '#options_display': side_by_side
+      '#required': true
+      '#wrapper_type': form_element
+  source:
+    '#type': fieldset
+    '#title': 'How did you hear about PEMAC?'
+    civicrm_1_contact_1_cg5_custom_263:
+      '#type': checkboxes
+      '#title': 'How did you hear about PEMAC'
+      '#title_display': invisible
+      '#options':
+        'Education Program': 'Education Program'
+        'from a Chapter': 'From a Chapter'
+        3: Coworker
+        2: Member
+        6: 'My Employer'
+        5: 'An Event'
+        1: 'Internet Search'
+        4: 'Social Media'
+        7: Other
+      '#options_display': two_columns
+      '#required': true
+      '#extra':
+        aslist: 1
+        multiple: 0
+      '#data_type': String
+      '#form_key': civicrm_1_contact_1_cg5_custom_263
+      '#parent': civicrm_1_contact_1_cg5_fieldset
+      '#default_option': ''
+      '#civicrm_live_options': '1'
+    civicrm_1_contact_1_cg5_custom_264:
+      '#type': textfield
+      '#title': 'Other, please specify:'
+      '#required': true
+      '#counter_type': character
+      '#counter_maximum': 255
+      '#counter_maximum_message': ' '
+      '#states':
+        visible:
+          ':input[name="civicrm_1_contact_1_cg5_custom_263[7]"]':
+            checked: true
+      '#data_type': String
+      '#form_key': civicrm_1_contact_1_cg5_custom_264
+      '#extra':
+        width: 20
+      '#parent': civicrm_1_contact_1_cg5_fieldset
+  civicrm_1_billing_1_number_of_billing_1_fieldset_fieldset:
+    '#type': fieldset
+    '#title': 'Billing Address'
+    '#form_key': civicrm_1_billing_1_number_of_billing_1_fieldset_fieldset
+    '#parent': contribution_pagebreak
+    civicrm_1_contribution_1_contribution_billing_address_same_as:
+      '#type': checkbox
+      '#title': 'Same As Contact Address'
+      '#set': billing_1_number_of_billing
+      '#parent': civicrm_1_billing_1_number_of_billing_1_fieldset_fieldset
+      '#form_key': civicrm_1_contribution_1_contribution_billing_address_same_as
+      '#extra': {  }
+    flexbox_07:
+      '#type': flexbox
+      civicrm_1_contribution_1_contribution_billing_address_first_name:
+        '#type': textfield
+        '#extra':
+          width: 60
+        '#set': billing_1_number_of_billing
+        '#parent': civicrm_1_billing_1_number_of_billing_1_fieldset_fieldset
+        '#form_key': civicrm_1_contribution_1_contribution_billing_address_first_name
+        '#title': 'Billing First Name'
+        '#required': true
+      civicrm_1_contribution_1_contribution_billing_address_last_name:
+        '#type': textfield
+        '#extra':
+          width: 60
+        '#set': billing_1_number_of_billing
+        '#parent': civicrm_1_billing_1_number_of_billing_1_fieldset_fieldset
+        '#form_key': civicrm_1_contribution_1_contribution_billing_address_last_name
+        '#title': 'Billing Last Name'
+        '#required': true
+    flexbox_08:
+      '#type': flexbox
+      civicrm_1_contribution_1_contribution_billing_address_country_id:
+        '#type': civicrm_options
+        '#extra':
+          aslist: 1
+          items: |-
+            1039|Canada
+            1001|Afghanistan
+            1002|Albania
+            1003|Algeria
+            1004|American Samoa
+            1005|Andorra
+            1006|Angola
+            1007|Anguilla
+            1008|Antarctica
+            1009|Antigua and Barbuda
+            1010|Argentina
+            1011|Armenia
+            1012|Aruba
+            1013|Australia
+            1014|Austria
+            1015|Azerbaijan
+            1212|Bahamas
+            1016|Bahrain
+            1017|Bangladesh
+            1018|Barbados
+            1019|Belarus
+            1020|Belgium
+            1021|Belize
+            1022|Benin
+            1023|Bermuda
+            1024|Bhutan
+            1025|Bolivia
+            1250|Bonaire, Saint Eustatius and Saba
+            1026|Bosnia and Herzegovina
+            1027|Botswana
+            1028|Bouvet Island
+            1029|Brazil
+            1030|British Indian Ocean Territory
+            1032|Brunei Darussalam
+            1033|Bulgaria
+            1034|Burkina Faso
+            1036|Burundi
+            1037|Cambodia
+            1038|Cameroon
+            1040|Cape Verde
+            1041|Cayman Islands
+            1042|Central African Republic
+            1043|Chad
+            1044|Chile
+            1045|China
+            1046|Christmas Island
+            1047|Cocos (Keeling) Islands
+            1048|Colombia
+            1049|Comoros
+            1051|Congo, Republic Of The
+            1050|Congo, The Democratic Republic of the
+            1052|Cook Islands
+            1053|Costa Rica
+            1055|Croatia
+            1056|Cuba
+            1248|Curaçao
+            1057|Cyprus
+            1058|Czech Republic
+            1054|Côte d’Ivoire
+            1059|Denmark
+            1060|Djibouti
+            1061|Dominica
+            1062|Dominican Republic
+            1064|Ecuador
+            1065|Egypt
+            1066|El Salvador
+            1067|Equatorial Guinea
+            1068|Eritrea
+            1069|Estonia
+            1203|Eswatini
+            1070|Ethiopia
+            1072|Falkland Islands (Malvinas)
+            1073|Faroe Islands
+            1074|Fiji
+            1075|Finland
+            1076|France
+            1077|French Guiana
+            1078|French Polynesia
+            1079|French Southern Territories
+            1080|Gabon
+            1213|Gambia
+            1081|Georgia
+            1082|Germany
+            1083|Ghana
+            1084|Gibraltar
+            1085|Greece
+            1086|Greenland
+            1087|Grenada
+            1088|Guadeloupe
+            1089|Guam
+            1090|Guatemala
+            1245|Guernsey
+            1091|Guinea
+            1092|Guinea-Bissau
+            1093|Guyana
+            1094|Haiti
+            1095|Heard Island and McDonald Islands
+            1096|Holy See (Vatican City State)
+            1097|Honduras
+            1098|Hong Kong
+            1099|Hungary
+            1100|Iceland
+            1101|India
+            1102|Indonesia
+            1103|Iran, Islamic Republic of
+            1104|Iraq
+            1105|Ireland
+            1246|Isle of Man
+            1106|Israel
+            1107|Italy
+            1108|Jamaica
+            1109|Japan
+            1244|Jersey
+            1110|Jordan
+            1111|Kazakhstan
+            1112|Kenya
+            1113|Kiribati
+            1114|Korea, Democratic People's Republic of
+            1115|Korea, Republic of
+            1251|Kosovo
+            1116|Kuwait
+            1117|Kyrgyzstan
+            1118|Lao People's Democratic Republic
+            1119|Latvia
+            1120|Lebanon
+            1121|Lesotho
+            1122|Liberia
+            1123|Libya
+            1124|Liechtenstein
+            1125|Lithuania
+            1126|Luxembourg
+            1127|Macao
+            1129|Madagascar
+            1130|Malawi
+            1131|Malaysia
+            1132|Maldives
+            1133|Mali
+            1134|Malta
+            1135|Marshall Islands
+            1136|Martinique
+            1137|Mauritania
+            1138|Mauritius
+            1139|Mayotte
+            1140|Mexico
+            1141|Micronesia, Federated States of
+            1142|Moldova
+            1143|Monaco
+            1144|Mongolia
+            1243|Montenegro
+            1145|Montserrat
+            1146|Morocco
+            1147|Mozambique
+            1035|Myanmar
+            1148|Namibia
+            1149|Nauru
+            1150|Nepal
+            1152|Netherlands
+            1153|New Caledonia
+            1154|New Zealand
+            1155|Nicaragua
+            1156|Niger
+            1157|Nigeria
+            1158|Niue
+            1159|Norfolk Island
+            1128|North Macedonia
+            1160|Northern Mariana Islands
+            1161|Norway
+            1162|Oman
+            1163|Pakistan
+            1164|Palau
+            1165|Palestine, State of
+            1166|Panama
+            1167|Papua New Guinea
+            1168|Paraguay
+            1169|Peru
+            1170|Philippines
+            1171|Pitcairn
+            1172|Poland
+            1173|Portugal
+            1174|Puerto Rico
+            1175|Qatar
+            1179|Reunion
+            1176|Romania
+            1177|Russian Federation
+            1178|Rwanda
+            1252|Saint Barthélemy
+            1180|Saint Helena
+            1181|Saint Kitts and Nevis
+            1182|Saint Lucia
+            1253|Saint Martin (French part)
+            1183|Saint Pierre and Miquelon
+            1184|Saint Vincent and the Grenadines
+            1185|Samoa
+            1186|San Marino
+            1207|Sao Tome and Principe
+            1187|Saudi Arabia
+            1188|Senegal
+            1242|Serbia
+            1238|Serbia and Montenegro
+            1189|Seychelles
+            1190|Sierra Leone
+            1191|Singapore
+            1249|Sint Maarten (Dutch Part)
+            1192|Slovakia
+            1193|Slovenia
+            1194|Solomon Islands
+            1195|Somalia
+            1196|South Africa
+            1197|South Georgia and the South Sandwich Islands
+            1247|South Sudan
+            1198|Spain
+            1199|Sri Lanka
+            1200|Sudan
+            1201|Suriname
+            1202|Svalbard and Jan Mayen
+            1204|Sweden
+            1205|Switzerland
+            1206|Syrian Arab Republic
+            1208|Taiwan
+            1209|Tajikistan
+            1210|Tanzania, United Republic of
+            1211|Thailand
+            1063|Timor-Leste
+            1214|Togo
+            1215|Tokelau
+            1216|Tonga
+            1217|Trinidad and Tobago
+            1218|Tunisia
+            1219|Turkey
+            1220|Turkmenistan
+            1221|Turks and Caicos Islands
+            1222|Tuvalu
+            1223|Uganda
+            1224|Ukraine
+            1225|United Arab Emirates
+            1226|United Kingdom
+            1228|United States
+            1227|United States Minor Outlying Islands
+            1229|Uruguay
+            1230|Uzbekistan
+            1231|Vanuatu
+            1232|Venezuela
+            1233|Viet Nam
+            1031|Virgin Islands, British
+            1234|Virgin Islands, U.S.
+            1235|Wallis and Futuna
+            1236|Western Sahara
+            1237|Yemen
+            1239|Zambia
+            1240|Zimbabwe
+            1241|Åland Islands
+        '#default_value': '1039'
+        '#set': billing_1_number_of_billing
+        '#parent': civicrm_1_billing_1_number_of_billing_1_fieldset_fieldset
+        '#form_key': civicrm_1_contribution_1_contribution_billing_address_country_id
+        '#options':
+          1039: Canada
+          1001: Afghanistan
+          1002: Albania
+          1003: Algeria
+          1004: 'American Samoa'
+          1005: Andorra
+          1006: Angola
+          1007: Anguilla
+          1008: Antarctica
+          1009: 'Antigua and Barbuda'
+          1010: Argentina
+          1011: Armenia
+          1012: Aruba
+          1013: Australia
+          1014: Austria
+          1015: Azerbaijan
+          1212: Bahamas
+          1016: Bahrain
+          1017: Bangladesh
+          1018: Barbados
+          1019: Belarus
+          1020: Belgium
+          1021: Belize
+          1022: Benin
+          1023: Bermuda
+          1024: Bhutan
+          1025: Bolivia
+          1250: 'Bonaire, Saint Eustatius and Saba'
+          1026: 'Bosnia and Herzegovina'
+          1027: Botswana
+          1028: 'Bouvet Island'
+          1029: Brazil
+          1030: 'British Indian Ocean Territory'
+          1032: 'Brunei Darussalam'
+          1033: Bulgaria
+          1034: 'Burkina Faso'
+          1036: Burundi
+          1037: Cambodia
+          1038: Cameroon
+          1040: 'Cape Verde'
+          1041: 'Cayman Islands'
+          1042: 'Central African Republic'
+          1043: Chad
+          1044: Chile
+          1045: China
+          1046: 'Christmas Island'
+          1047: 'Cocos (Keeling) Islands'
+          1048: Colombia
+          1049: Comoros
+          1051: 'Congo, Republic Of The'
+          1050: 'Congo, The Democratic Republic of the'
+          1052: 'Cook Islands'
+          1053: 'Costa Rica'
+          1055: Croatia
+          1056: Cuba
+          1248: Curaçao
+          1057: Cyprus
+          1058: 'Czech Republic'
+          1054: 'Côte d’Ivoire'
+          1059: Denmark
+          1060: Djibouti
+          1061: Dominica
+          1062: 'Dominican Republic'
+          1064: Ecuador
+          1065: Egypt
+          1066: 'El Salvador'
+          1067: 'Equatorial Guinea'
+          1068: Eritrea
+          1069: Estonia
+          1203: Eswatini
+          1070: Ethiopia
+          1072: 'Falkland Islands (Malvinas)'
+          1073: 'Faroe Islands'
+          1074: Fiji
+          1075: Finland
+          1076: France
+          1077: 'French Guiana'
+          1078: 'French Polynesia'
+          1079: 'French Southern Territories'
+          1080: Gabon
+          1213: Gambia
+          1081: Georgia
+          1082: Germany
+          1083: Ghana
+          1084: Gibraltar
+          1085: Greece
+          1086: Greenland
+          1087: Grenada
+          1088: Guadeloupe
+          1089: Guam
+          1090: Guatemala
+          1245: Guernsey
+          1091: Guinea
+          1092: Guinea-Bissau
+          1093: Guyana
+          1094: Haiti
+          1095: 'Heard Island and McDonald Islands'
+          1096: 'Holy See (Vatican City State)'
+          1097: Honduras
+          1098: 'Hong Kong'
+          1099: Hungary
+          1100: Iceland
+          1101: India
+          1102: Indonesia
+          1103: 'Iran, Islamic Republic of'
+          1104: Iraq
+          1105: Ireland
+          1246: 'Isle of Man'
+          1106: Israel
+          1107: Italy
+          1108: Jamaica
+          1109: Japan
+          1244: Jersey
+          1110: Jordan
+          1111: Kazakhstan
+          1112: Kenya
+          1113: Kiribati
+          1114: "Korea, Democratic People's Republic of"
+          1115: 'Korea, Republic of'
+          1251: Kosovo
+          1116: Kuwait
+          1117: Kyrgyzstan
+          1118: "Lao People's Democratic Republic"
+          1119: Latvia
+          1120: Lebanon
+          1121: Lesotho
+          1122: Liberia
+          1123: Libya
+          1124: Liechtenstein
+          1125: Lithuania
+          1126: Luxembourg
+          1127: Macao
+          1129: Madagascar
+          1130: Malawi
+          1131: Malaysia
+          1132: Maldives
+          1133: Mali
+          1134: Malta
+          1135: 'Marshall Islands'
+          1136: Martinique
+          1137: Mauritania
+          1138: Mauritius
+          1139: Mayotte
+          1140: Mexico
+          1141: 'Micronesia, Federated States of'
+          1142: Moldova
+          1143: Monaco
+          1144: Mongolia
+          1243: Montenegro
+          1145: Montserrat
+          1146: Morocco
+          1147: Mozambique
+          1035: Myanmar
+          1148: Namibia
+          1149: Nauru
+          1150: Nepal
+          1152: Netherlands
+          1153: 'New Caledonia'
+          1154: 'New Zealand'
+          1155: Nicaragua
+          1156: Niger
+          1157: Nigeria
+          1158: Niue
+          1159: 'Norfolk Island'
+          1128: 'North Macedonia'
+          1160: 'Northern Mariana Islands'
+          1161: Norway
+          1162: Oman
+          1163: Pakistan
+          1164: Palau
+          1165: 'Palestine, State of'
+          1166: Panama
+          1167: 'Papua New Guinea'
+          1168: Paraguay
+          1169: Peru
+          1170: Philippines
+          1171: Pitcairn
+          1172: Poland
+          1173: Portugal
+          1174: 'Puerto Rico'
+          1175: Qatar
+          1179: Reunion
+          1176: Romania
+          1177: 'Russian Federation'
+          1178: Rwanda
+          1252: 'Saint Barthélemy'
+          1180: 'Saint Helena'
+          1181: 'Saint Kitts and Nevis'
+          1182: 'Saint Lucia'
+          1253: 'Saint Martin (French part)'
+          1183: 'Saint Pierre and Miquelon'
+          1184: 'Saint Vincent and the Grenadines'
+          1185: Samoa
+          1186: 'San Marino'
+          1207: 'Sao Tome and Principe'
+          1187: 'Saudi Arabia'
+          1188: Senegal
+          1242: Serbia
+          1238: 'Serbia and Montenegro'
+          1189: Seychelles
+          1190: 'Sierra Leone'
+          1191: Singapore
+          1249: 'Sint Maarten (Dutch Part)'
+          1192: Slovakia
+          1193: Slovenia
+          1194: 'Solomon Islands'
+          1195: Somalia
+          1196: 'South Africa'
+          1197: 'South Georgia and the South Sandwich Islands'
+          1247: 'South Sudan'
+          1198: Spain
+          1199: 'Sri Lanka'
+          1200: Sudan
+          1201: Suriname
+          1202: 'Svalbard and Jan Mayen'
+          1204: Sweden
+          1205: Switzerland
+          1206: 'Syrian Arab Republic'
+          1208: Taiwan
+          1209: Tajikistan
+          1210: 'Tanzania, United Republic of'
+          1211: Thailand
+          1063: Timor-Leste
+          1214: Togo
+          1215: Tokelau
+          1216: Tonga
+          1217: 'Trinidad and Tobago'
+          1218: Tunisia
+          1219: Turkey
+          1220: Turkmenistan
+          1221: 'Turks and Caicos Islands'
+          1222: Tuvalu
+          1223: Uganda
+          1224: Ukraine
+          1225: 'United Arab Emirates'
+          1226: 'United Kingdom'
+          1228: 'United States'
+          1227: 'United States Minor Outlying Islands'
+          1229: Uruguay
+          1230: Uzbekistan
+          1231: Vanuatu
+          1232: Venezuela
+          1233: 'Viet Nam'
+          1031: 'Virgin Islands, British'
+          1234: 'Virgin Islands, U.S.'
+          1235: 'Wallis and Futuna'
+          1236: 'Western Sahara'
+          1237: Yemen
+          1239: Zambia
+          1240: Zimbabwe
+          1241: 'Åland Islands'
+        '#title': Country
+        '#civicrm_live_options': 1
+        '#required': true
+      civicrm_1_contribution_1_contribution_billing_address_state_province_id:
+        '#type': civicrm_options
+        '#extra':
+          aslist: 1
+        '#data_type': state_province_abbr
+        '#set': billing_1_number_of_billing
+        '#parent': civicrm_1_billing_1_number_of_billing_1_fieldset_fieldset
+        '#empty_option': '- None -'
+        '#form_key': civicrm_1_contribution_1_contribution_billing_address_state_province_id
+        '#title': State/Province
+        '#civicrm_live_options': 0
+        '#options': {  }
+        '#required': true
+      civicrm_1_contribution_1_contribution_billing_address_city:
+        '#type': textfield
+        '#extra':
+          width: 20
+        '#set': billing_1_number_of_billing
+        '#parent': civicrm_1_billing_1_number_of_billing_1_fieldset_fieldset
+        '#form_key': civicrm_1_contribution_1_contribution_billing_address_city
+        '#title': City
+        '#required': true
+    flexbox_10:
+      '#type': flexbox
+      civicrm_1_contribution_1_contribution_billing_address_street_address:
+        '#type': textfield
+        '#title': 'Street Address'
+        '#required': true
+        '#flex': 2
+        '#extra':
+          width: 60
+        '#set': billing_1_number_of_billing
+        '#parent': civicrm_1_billing_1_number_of_billing_1_fieldset_fieldset
+        '#form_key': civicrm_1_contribution_1_contribution_billing_address_street_address
+      civicrm_1_contribution_1_contribution_billing_address_postal_code:
+        '#type': textfield
+        '#extra':
+          width: 7
+        '#set': billing_1_number_of_billing
+        '#parent': civicrm_1_billing_1_number_of_billing_1_fieldset_fieldset
+        '#form_key': civicrm_1_contribution_1_contribution_billing_address_postal_code
+        '#title': 'Postal Code'
+        '#required': true
+actions:
+  '#type': webform_actions
+  '#title': 'Submit button(s)'
+  '#submit__label': 'Submit Application'
