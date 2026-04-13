@@ -12,6 +12,8 @@ contact_pagebreak:
       25: 'CTAM Certification'
       26: 'CPAM Certification'
       27: 'CSAM Certification'
+      31: 'CEAM Certification'
+      32: 'CFAM Certification'
     '#default_value': '[current-page:query:typeid]'
     '#extra':
       aslist: 1
@@ -76,6 +78,40 @@ contact_pagebreak:
     '#message_type': info
     '#message_message': '<p>Important Information</p><p>This form is for individuals to apply for Certified Senior Principal in Asset Management (CSAM) Certification.&nbsp;</p><p><strong>Step 1:</strong> If you have not done so already, you must undertake the quick CSAM self-assessment and get a positive result to receive the "CSAM application prep package".&nbsp;</p><p><strong>Step 2:</strong> Work through the steps indicated in the "CSAM application prep package".&nbsp;</p><p><strong>Step 3:</strong> Return to this page to apply, pay and submit.</p>'
     '#message_close': true
+  container_ceam:
+    '#type': container
+    '#states':
+      visible:
+        ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+          value: '31'
+    membership_title_ceam:
+      '#type': processed_text
+      '#text': '<h3>Application for CEAM Certification</h3>'
+      '#format': full_html
+  important_information_ceam:
+    '#type': message
+    '#states':
+      visible:
+        ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+          value: '31'
+    '#message_message': '<p>Important Information</p><p>This form is for individuals to apply for Certified Executive in Asset Management (CEAM) Certification.&nbsp;</p><p><strong>Step 1:</strong> If you have not done so already, you must undertake the quick CEAM self-assessment and get a positive result to receive the "CEAM application prep package".&nbsp;</p><p><strong>Step 2:</strong> Work through the steps indicated in the "CEAM application prep package".&nbsp;</p><p><strong>Step 3:</strong> Return to this page to apply, pay and submit.</p>'
+  container_cfam:
+    '#type': container
+    '#states':
+      visible:
+        ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+          value: '32'
+    membership_title_cfam:
+      '#type': processed_text
+      '#text': '<h3>Application for CFAM Certification</h3>'
+      '#format': full_html
+  important_information_cfam:
+    '#type': message
+    '#states':
+      visible:
+        ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+          value: '32'
+    '#message_message': '<p>Important Information</p><p>This form is for individuals to apply for Certified Fellow in Asset Management (CFAM) Certification.&nbsp;</p><p><strong>Step 1:</strong> If you have not done so already, you must undertake the quick CFAM self-assessment and get a positive result to receive the "CFAM application prep package".&nbsp;</p><p><strong>Step 2:</strong> Work through the steps indicated in the "CFAM application prep package".&nbsp;</p><p><strong>Step 3:</strong> Return to this page to apply, pay and submit.</p>'
   no_renewals:
     '#type': message
     '#message_type': warning
@@ -150,7 +186,7 @@ contact_pagebreak:
     cpd_requirements_more:
       '#type': more
       '#more_title': 'Review CPD Requirements'
-      '#more': '<h5>CPD Requirements by Category&nbsp;</h5><p>Your tracked CPD hours will be evaluated based on the total accumulated on a three year, rolling basis according to the table, below.</p><p>&nbsp;</p><p><img src="/sites/default/files/2025-03/gcs_cpd_requirements.png" width="564" height="700"></p>'
+      '#more': '<h5>CPD Requirements by Category&nbsp;</h5><p>Your tracked CPD hours will be evaluated based on the total accumulated on a three year, rolling basis according to the table, below.</p><p>&nbsp;</p><p><img src="/sites/default/files/2026-04/GCS_CPD_Requirements.png"></p>'
   address:
     '#type': fieldset
     '#title': 'Your Contact Information'
@@ -666,7 +702,7 @@ contact_pagebreak:
       civicrm_1_membership_1_membership_fee_amount:
         '#type': computed_twig
         '#title': 'Computed Amount [$]'
-        '#description': '<p>Includes non-refundable application fee.</p><ul><li>CTAM - $25</li><li>CPAM - $50</li><li>CSAM - $50</li></ul>'
+        '#description': '<p>Includes non-refundable application fee.</p><ul><li>CTAM - $25</li><li>CPAM - $50</li><li>CSAM - $50</li><li>CEAM - $50</li><li>CFAM - $50</li></ul>'
         '#template': |
           {% if data.civicrm_1_membership_1_membership_membership_type_id == '25' %}
           {% set amount = 185 %}
@@ -676,6 +712,12 @@ contact_pagebreak:
           {{ ((((('2026-08-31'|date("U") - "now"|date("U") ))/86400/365*amount))*data.discount+50)|round(2, 'floor')|number_format(2) }}
           {% elseif data.civicrm_1_membership_1_membership_membership_type_id == '27'%}
           {% set amount = 295 %}
+          {{ ((((('2026-08-31'|date("U") - "now"|date("U") ))/86400/365*amount))*data.discount+50)|round(2, 'floor')|number_format(2) }}
+          {% elseif data.civicrm_1_membership_1_membership_membership_type_id == '31'%}
+          {% set amount = 235 %}
+          {{ ((((('2026-08-31'|date("U") - "now"|date("U") ))/86400/365*amount))*data.discount+50)|round(2, 'floor')|number_format(2) }}
+          {% elseif data.civicrm_1_membership_1_membership_membership_type_id == '32'%}
+          {% set amount = 355 %}
           {{ ((((('2026-08-31'|date("U") - "now"|date("U") ))/86400/365*amount))*data.discount+50)|round(2, 'floor')|number_format(2) }}
           {% endif %}
         '#store': true
@@ -891,6 +933,57 @@ application_information:
         'Narrative 5 (Optional)': 'Narrative 5 (Optional)'
         'Narrative 6 (Optional)': 'Narrative 6 (Optional)'
       '#sticky': false
+    narrative_mapping_ceam:
+      '#type': likert
+      '#title': 'Narrative Instructions'
+      '#description': '<h3>CEAM Competency Checklist</h3><p>The list below is intended to help you ensure you have covered the required competencies with your chosen narratives.</p><p>For each required CEAM competency (listed on the left, below) indicated which of your narratives (listed on the right, below) offers the best evidence.</p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+            value: '31'
+      '#questions':
+        '1. Demonstrate awareness, understanding and benefits of Asset Management (AM) and the Asset Management Framework (AMF)': '1. Demonstrate awareness, understanding and benefits of Asset Management (AM) and the Asset Management Framework (AMF)'
+        '2. Conduct strategic planning and acquisition of asset‑dependent capability ': '2. Conduct strategic planning and acquisition of asset‑dependent capability '
+        '3. Apply systems thinking to AM decisions and lifecycle delivery': '3. Apply systems thinking to AM decisions and lifecycle delivery'
+        '4. Apply financial and economic principles in Asset Management (AM)': '4. Apply financial and economic principles in Asset Management (AM)'
+        '5. Provide leadership in Asset Management (AM)': '5. Provide leadership in Asset Management (AM)'
+      '#answers':
+        'Narrative 1': 'Narrative 1'
+        'Narrative 2': 'Narrative 2'
+        'Narrative 3': 'Narrative 3'
+        'Narrative 4 (Optional)': 'Narrative 4 (Optional)'
+        'Narrative 5 (Optional)': 'Narrative 5 (Optional)'
+        'Narrative 6 (Optional)': 'Narrative 6 (Optional)'
+      '#sticky': false
+    narrative_mapping_cfam:
+      '#type': likert
+      '#title': 'Narrative Instructions'
+      '#description': '<h3>CFAM Competency Checklist</h3><p>The list below is intended to help you ensure you have covered the required competencies with your chosen narratives.</p><p>For each required CFAM competency (listed on the left, below) indicated which of your narratives (listed on the right, below) offers the best evidence.</p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+            value: '32'
+      '#questions':
+        '1. Demonstrate awareness, understanding and benefits of Asset Management (AM) and the Asset Management Framework (AMF)': '1. Demonstrate awareness, understanding and benefits of Asset Management (AM) and the Asset Management Framework (AMF)'
+        '2. Demonstrate application of knowledge skill and understanding in Asset Management': '2. Demonstrate application of knowledge skill and understanding in Asset Management'
+        '3. Applying cognitive skills': '3. Applying cognitive skills'
+        '4. Demonstrate a wide range of AM and communication skills': '4. Demonstrate a wide range of AM and communication skills'
+        '5. Demonstrate autonomy, accountability and working with others in Asset Management': '5. Demonstrate autonomy, accountability and working with others in Asset Management'
+        '6. Demonstrate leadership, education and promotion of Asset Management to further expand and grow the discipline and practice of': '6. Demonstrate leadership, education and promotion of Asset Management to further expand and grow the discipline and practice of'
+      '#answers':
+        'Narrative 1': 'Narrative 1'
+        'Narrative 2': 'Narrative 2'
+        'Narrative 3': 'Narrative 3'
+        'Narrative 4 (Optional)': 'Narrative 4 (Optional)'
+        'Narrative 5 (Optional)': 'Narrative 5 (Optional)'
+        'Narrative 6 (Optional)': 'Narrative 6 (Optional)'
+      '#sticky': false
   portfolio_instructions:
     '#type': fieldset
     '#title': 'Portfolio Instructions'
@@ -930,6 +1023,20 @@ application_information:
           ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
             value: '27'
       '#markup': '<p>Please self-assess your experience against each of the subject categories&nbsp;of Asset Management.</p><p>A combination breadth and depth is required for CSAM certification. Full breadth and depth is not possible or required.</p><p>The assessors will cross reference your self-assessment to your narratives, portfolio and resume and this exercise is likely to inform their interview questions.</p>'
+    ceam_subject_breadth:
+      '#type': markup
+      '#states':
+        visible:
+          ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+            value: '31'
+      '#markup': '<p>Please self-assess your experience against each of the subject categories&nbsp;of Asset Management.</p><p>A combination of breadth and executive-level integration is required for CEAM certification. Full breadth and depth is not possible or required.</p><p>The assessors will cross reference your self-assessment to your narratives, portfolio and resume and this exercise is likely to inform their interview questions.</p>'
+    cfam_subject_breadth:
+      '#type': markup
+      '#states':
+        visible:
+          ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+            value: '32'
+      '#markup': '<p>Please self-assess your experience against each of the subject categories&nbsp;of Asset Management.</p><p>A combination of breadth and executive-level integration is required for CFAM certification. Full breadth and depth is not possible or required.</p><p>The assessors will cross reference your self-assessment to your narratives, portfolio and resume and this exercise is likely to inform their interview questions.</p>'
     seven_subject_areas_ctam:
       '#type': likert
       '#title': 'Seven Subject Areas of Asset Management (reference GFMAM AM Landscape 3rd Edition)'
@@ -970,6 +1077,32 @@ application_information:
         'Leadership and people: Asset Management Leadership, Organisational Arrangements, Organisational Culture, Competence Management, ': 'Leadership and people: Asset Management Leadership, Organisational Arrangements, Organisational Culture, Competence Management, '
         'Data and Information: Asset Management Data & Information Strategy, Asset Data & Information Standards, Asset Management Data & ': 'Data and Information: Asset Management Data & Information Strategy, Asset Data & Information Standards, Asset Management Data & '
         'Delivery: Asset Creation & Acquisition, Systems Engineering, Maintenance Delivery, Integrated Reliability, Asset Operations, Inc': 'Delivery: Asset Creation & Acquisition, Systems Engineering, Maintenance Delivery, Integrated Reliability, Asset Operations, Inc'
+        'Value realization: Outcomes & Impacts, Monitoring, Continuous Improvement': 'Value realization: Outcomes & Impacts, Monitoring, Continuous Improvement'
+      '#answers':
+        'I can’t demonstrate any significant knowledge or experience': 'I can’t demonstrate any significant knowledge or experience'
+        'Some knowledge and experience across a few roles, initiatives and/or projects': 'Some knowledge and experience across a few roles, initiatives and/or projects'
+        'Both knowledge and experience across several roles, initiatives and/or projects': 'Both knowledge and experience across several roles, initiatives and/or projects'
+        'Significant depth of experience over years and several roles, initiatives and/or projects': 'Significant depth of experience over years and several roles, initiatives and/or projects'
+        'Expert-level due to a combination of years of formal study and with significant progressive years of experience across asset management roles, initiatives and projects': 'Expert-level due to a combination of years of formal study and with significant progressive years of experience across asset management roles, initiatives and projects'
+      '#sticky': false
+    seven_subject_areas_ceam_cfam:
+      '#type': likert
+      '#title': 'Seven Subject Areas of Asset Management (reference GFMAM AM Landscape 3rd Edition)'
+      '#required': true
+      '#states':
+        visible:
+          - ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+              value: '31'
+          - or
+          - ':input[name="civicrm_1_membership_1_membership_membership_type_id"]':
+              value: '32'
+      '#questions':
+        'Context and Stakeholders: Organisational Purpose & Context, Stakeholder Management, Asset Costing & Valuation': 'Context and Stakeholders: Organisational Purpose & Context, Stakeholder Management, Asset Costing & Valuation'
+        'Governance: Asset Management Policy, Asset Management System, Asset Management Assurance & Audit, Technical Standards...': 'Governance: Asset Management Policy, Asset Management System, Asset Management Assurance & Audit, Technical Standards... -- ...& Legislation, Management of Change, Risk'
+        'AM Planning: AM Strategy & Objectives, Demand Analysis, Sustainable Development, Asset Management Planning, Decision-Making...': 'AM Planning: AM Strategy & Objectives, Demand Analysis, Sustainable Development, Asset Management Planning, Decision-Making... -- ...Lifecycle Value Realisation, Resourcing Strategy & Management, Shutdown and Outage Strategy and Planning, Contingency Planning & Resilience'
+        'Leadership and people: Asset Management Leadership, Organisational Arrangements, Organisational Culture, Competence Management..': 'Leadership and people: Asset Management Leadership, Organisational Arrangements, Organisational Culture, Competence Management.. -- ...Organisational Change Management, Knowledge Management'
+        'Data and Information: Asset Management Data & Information Strategy, Asset Data & Information Standards, Asset Management Data...': 'Data and Information: Asset Management Data & Information Strategy, Asset Data & Information Standards, Asset Management Data... -- ... & Information Management, Asset Management Data & Information Systems, Configuration Management'
+        'Delivery: Asset Creation & Acquisition, Systems Engineering, Maintenance Delivery, Integrated Reliability, Asset Operations, ...': 'Delivery: Asset Creation & Acquisition, Systems Engineering, Maintenance Delivery, Integrated Reliability, Asset Operations, ... -- ... Incident Management & Response, Asset Repurposing & Disposal, Supply Chain Management'
         'Value realization: Outcomes & Impacts, Monitoring, Continuous Improvement': 'Value realization: Outcomes & Impacts, Monitoring, Continuous Improvement'
       '#answers':
         'I can’t demonstrate any significant knowledge or experience': 'I can’t demonstrate any significant knowledge or experience'
